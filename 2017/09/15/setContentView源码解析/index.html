@@ -95,16 +95,21 @@
 
 
 
-<meta name="description" content="记录Android开发的点滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lyuanhui&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="1.两个疑问 requestWindowFeature方法为什么要在setContentView方法之前调用 ​为什么在我们的根布局前面前面还会有FrameLayout，而这个我们并没有写在布局里面  2.Android6.0(API 23) Activity的setContentView方法2-0 从getWindow说起在我们自己的MainActivity点进去后到Activity类，发现有三">
+<meta property="og:type" content="article">
+<meta property="og:title" content="setContentView源码解析">
+<meta property="og:url" content="http://yoursite.com/2017/09/15/setContentView源码解析/index.html">
 <meta property="og:site_name" content="Lyuanhui&#39;s Blog">
-<meta property="og:description" content="记录Android开发的点滴">
+<meta property="og:description" content="1.两个疑问 requestWindowFeature方法为什么要在setContentView方法之前调用 ​为什么在我们的根布局前面前面还会有FrameLayout，而这个我们并没有写在布局里面  2.Android6.0(API 23) Activity的setContentView方法2-0 从getWindow说起在我们自己的MainActivity点进去后到Activity类，发现有三">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.blog.csdn.net/20150526104647053">
+<meta property="og:image" content="http://img.blog.csdn.net/20150525162737834">
+<meta property="og:image" content="http://img.blog.csdn.net/20150526104647053">
+<meta property="og:updated_time" content="2017-09-19T00:55:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lyuanhui&#39;s Blog">
-<meta name="twitter:description" content="记录Android开发的点滴">
+<meta name="twitter:title" content="setContentView源码解析">
+<meta name="twitter:description" content="1.两个疑问 requestWindowFeature方法为什么要在setContentView方法之前调用 ​为什么在我们的根布局前面前面还会有FrameLayout，而这个我们并没有写在布局里面  2.Android6.0(API 23) Activity的setContentView方法2-0 从getWindow说起在我们自己的MainActivity点进去后到Activity类，发现有三">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20150526104647053">
 
 
 
@@ -134,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/15/setContentView源码解析/"/>
 
 
 
 
 
-  <title>Lyuanhui's Blog</title>
+  <title>setContentView源码解析 | Lyuanhui's Blog</title>
   
 
 
@@ -159,8 +164,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -243,9 +247,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -275,9 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/15/setContentView源码解析/" itemprop="url">setContentView源码解析</a></h1>
+          <h1 class="post-title" itemprop="name headline">setContentView源码解析</h1>
         
 
         <div class="post-meta">
@@ -338,9 +340,7 @@
       
 
       
-        
-          
-            <h2 id="1-两个疑问"><a href="#1-两个疑问" class="headerlink" title="1.两个疑问"></a>1.两个疑问</h2><ul>
+        <h2 id="1-两个疑问"><a href="#1-两个疑问" class="headerlink" title="1.两个疑问"></a>1.两个疑问</h2><ul>
 <li>requestWindowFeature方法为什么要在setContentView方法之前调用</li>
 <li>​为什么在我们的根布局前面前面还会有FrameLayout，而这个我们并没有写在布局里面<br><img src="http://img.blog.csdn.net/20150526104647053" width="80%" height="80%/"></li>
 </ul>
@@ -429,8 +429,6 @@
 <li>最后把我们开发中的布局都添加到上一步返回回来mContentParent的ViewGroup里</li>
 </ul>
 
-          
-        
       
     </div>
     
@@ -447,201 +445,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/25/在Mac OS上编译ijkplayer，并加入MEPG-4解码支持/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lyuanhui">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lyuanhui's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/25/在Mac OS上编译ijkplayer，并加入MEPG-4解码支持/" itemprop="url">在Mac OS上编译ijkplayer，并加入MPEG-4解码支持</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-25T22:27:29+08:00">
-                2017-05-25
-              </time>
+              <a href="/2017/05/25/在Mac OS上编译ijkplayer，并加入MEPG-4解码支持/" rel="next" title="在Mac OS上编译ijkplayer，并加入MPEG-4解码支持">
+                <i class="fa fa-chevron-left"></i> 在Mac OS上编译ijkplayer，并加入MPEG-4解码支持
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/05/25/在Mac OS上编译ijkplayer，并加入MEPG-4解码支持/" class="leancloud_visitors" data-flag-title="在Mac OS上编译ijkplayer，并加入MPEG-4解码支持">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'tv.danmaku.ijk.media:ijkplayer-java:0.7.8.1'</span></div><div class="line">compile <span class="string">'tv.danmaku.ijk.media:ijkplayer-armv7a:0.7.8.1'</span></div></pre></td></tr></table></figure>
-<p>需求：项目中gradle里引入的ijkplayer默认可以支持播放avcodec编码的mp4格式的视频，但是不支持播放mp4格式MPEG-4编码的视频(现象为视频出现黑屏，可听到声音，说明音频能被解码)</p>
-<p>解决办法：通过修改配置，并重新编码出SO，以达到支持播放MPEG-4编码的视频</p>
-<p>编译环境：</p>
-<ul>
-<li>macOS 10.12.4 </li>
-<li>Android</li>
-<li>NDK 13.1</li>
-<li>Android Studio 2.2</li>
-<li>Gradle 2.14.1</li>
-</ul>
-<h2 id="1-下载Git上的源码"><a href="#1-下载Git上的源码" class="headerlink" title="1.下载Git上的源码"></a>1.下载Git上的源码</h2><p>通过<code>git clone https://github.com/Bilibili/ijkplayer.git ijkplayer-android</code>clone源码到本地，当然也可用sourcetree等工具拉取下来</p>
-<p><img src="../images/build_ijkplayer_1.png" width="20%" height="20%" align="middle"></p>
-<p>拉取下来后这就是里面的目录文件结构</p>
-<h2 id="2-配置"><a href="#2-配置" class="headerlink" title="2.配置"></a>2.配置</h2><p>1.配置NDK：</p>
-<p>先进入自己的用户下面，然后再更改配置文件，一般是<code>.bash_profile</code>或者<code>.profile</code>。这里以<code>.bash_profile</code>为例子说明</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~</div><div class="line">vi .bash_profile</div></pre></td></tr></table></figure>
-<p>进入到vi编译模式后，再把<code>export ANDROID_NDK=&lt;your ndk path&gt;</code>此行写入。(vi用法请自行查阅)</p>
-<p>2.配置FFMPEG的需要支持的视频格式等</p>
-<p>在clone下来项目里的config目录里提供了三个配置文件。这里先以配置文件<code>module-default.sh</code>作为例子编译一次</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd config</div><div class="line">rm module.sh	//如果已经存在，必须先移除，否则不能生成新的</div><div class="line">ln -s module-default.sh module.sh	//生成一个module.sh的连接指向module-default.sh</div></pre></td></tr></table></figure>
-<p>3.创建分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -B latest k0.8.0</div></pre></td></tr></table></figure>
-<p>创建并切换到一个最新的分支<code>latest</code>来作为我们自己编译的分支，不直接在master上修改。我这里是在0.8.0上的基础上重新编译的，版本号可在<code>ijkplayer-android</code>目录下的<code>version.sh</code>找到</p>
-<h2 id="3-下载并编译FFMPEG"><a href="#3-下载并编译FFMPEG" class="headerlink" title="3.下载并编译FFMPEG"></a>3.下载并编译FFMPEG</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./init-android.sh</div></pre></td></tr></table></figure>
-<p>在<code>ijkplayer-android</code>目录下执行此命令，根据命令行的内容，推测是在拉取FFMPEG各个CPU平台下的源码。下图是已经拉取完，执行上面命令后的结果(因为已经科学上网，此过程用了几分钟就可拉取下来)</p>
-<p><img src="../images/build_ijkplayer_2.png" width="50%" height="50%" align="middle"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd android/contrib</div><div class="line">./compile-ffmpeg.sh clean</div><div class="line">./compile-ffmpeg.sh all</div></pre></td></tr></table></figure>
-<p><code>./compile-ffmpeg.sh clean</code>此命令用来清除上一次编译后生成的文件，执行结果如下，因为清除的文件较多，这里只截取了一部分</p>
-<p><img src="../images/build_ijkplayer_3.png" width="50%" height="50%" align="middle"></p>
-<p><code>./compile-ffmpeg.sh all</code>用来编译生成FFMPEG所有平台的库，如果需要指定只编译某一个平台，可把<code>all</code>改成<code>armv7a</code>，<code>x86</code>等平台。生成的文件都会在<code>android/contrib</code>下面的build目录里，这里依然只截取一部分图，由于生成的文件较多，这一步会稍微比较久</p>
-<p><img src="../images/build_ijkplayer_4.png" width="50%" height="50%" align="middle"></p>
-<p>编译完了之后，build目录下生成的文件</p>
-<p><img src="../images/build_ijkplayer_5.png" width="50%" height="50%" align="middle"></p>
-<h2 id="4-编译ijkplayer"><a href="#4-编译ijkplayer" class="headerlink" title="4.编译ijkplayer"></a>4.编译ijkplayer</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ..</div><div class="line">./compile-ijk.sh all</div></pre></td></tr></table></figure>
-<p>切换回上一级目录，即回到<code>ijkplayer-android/android</code>，然后执行编译。这里的<code>all</code>同上面，也可改成自己想要编译的平台。</p>
-<p><img src="../images/build_ijkplayer_6.png" width="50%" height="50%" align="middle"></p>
-<p>执行完了之后，在Demo里面的各个module下的libs就会生成对应的so了，如armv7a的module下的路径<code>ijkplayer-android/android/ijkplayer/ijkplayer-armv7a/src/main/libs</code>。</p>
-<p>想要查看Demo，只需把<code>ijkplayer-android/android/ijkplayer</code>导入进去Android Studio里面</p>
-<h2 id="5-定制自己需要的解码器"><a href="#5-定制自己需要的解码器" class="headerlink" title="5.定制自己需要的解码器"></a>5.定制自己需要的解码器</h2><p>上面编译的是<code>module-default.sh</code>配置的SO，<code>libijkffmepg.so</code>大约有7MB左右，实际上对于大多数手机端上的视频来说，我们并不需要用到那么多解码器，这无疑增大了包的体积。</p>
-<p>再回到我们一开始的需求，我们只需要在原来compile进来的so基础上增加对MEPG-4视频编码的支持就行了。</p>
-<p>打开config目录下的<code>module-lite.sh</code>，在<code>#./configure --list-decoders</code>末尾加入下面这行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export COMMON_FF_CFG_FLAGS=&quot;$COMMON_FF_CFG_FLAGS --enable-decoder=mpeg4&quot;</div></pre></td></tr></table></figure>
-<p><img src="../images/build_ijkplayer_7.png" width="50%" height="50%" align="middle"></p>
-<p>然后在上面第二步<code>ln -s module-default.sh module.sh</code>创建module.sh时，修改成下面，其他不变</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ln -s module-lite.sh module.sh</div></pre></td></tr></table></figure>
-<p>最后生成的<code>libijkffmepg.so</code>大概2MB，比compile导入的so大概多了300~400KB。</p>
-<p>如果想要增加更多的格式或是控制so的体积，只保留自己需要的解码，则可在配置里disable那个解码器</p>
-<p>一些支持的文件格式或者视频流可以参考FFmpeg里面的avcodec.h头文件：</p>
-<p><img src="../images/build_ijkplayer_8.png" width="50%" height="50%" align="middle"></p>
-<p>把自己编译好的项目放入项目里后，遇到如下问题：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java.lang.UnsatisfiedLinkError: JNI_ERR returned from JNI_OnLoad in &quot;/data/app/com.p1.mobile.putong-1/lib/arm/libijksdl.so&quot;</div></pre></td></tr></table></figure>
-<p>1.保证<code>ijkplayer-java</code>这个库跟so的库版本一致</p>
-<p>2.在<code>proguard-rules.pro</code>加入<code>-keep class  tv.danmaku.** {*;}</code>不被混淆</p>
-<h2 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h2><p>1.<a href="https://github.com/Bilibili/ijkplayer" target="_blank" rel="external">https://github.com/Bilibili/ijkplayer</a></p>
-<p>2.<a href="http://blog.csdn.net/zy987654zy/article/details/53126457" target="_blank" rel="external">ijkplayer 编译so库过程</a></p>
-<p>3.<a href="http://www.jianshu.com/p/593afe10155b" target="_blank" rel="external">iOS使用IJKPlayer播放编码mpeg视频无画面</a></p>
-<p>4.<a href="http://www.jianshu.com/p/220b00d00deb" target="_blank" rel="external">IJKPlayer问题集锦之不定时更新</a></p>
-<p>5.<a href="http://www.jianshu.com/p/3f78da1c6a61" target="_blank" rel="external">ijkplayer开启rtsp与MJPEG的支持</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -651,10 +476,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -662,6 +488,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
 
         </div>
         
@@ -682,8 +514,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <p class="site-author-name" itemprop="name">Lyuanhui</p>
@@ -735,6 +576,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-两个疑问"><span class="nav-number">1.</span> <span class="nav-text">1.两个疑问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Android6-0-API-23-Activity的setContentView方法"><span class="nav-number">2.</span> <span class="nav-text">2.Android6.0(API 23) Activity的setContentView方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-0-从getWindow说起"><span class="nav-number">2.1.</span> <span class="nav-text">2-0 从getWindow说起</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-窗口Window类的一些关系"><span class="nav-number">2.2.</span> <span class="nav-text">2-1 窗口Window类的一些关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-PhoneWindow类的setContentView方法"><span class="nav-number">2.3.</span> <span class="nav-text">2-2 PhoneWindow类的setContentView方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-PhoneWindow类的installDecor方法"><span class="nav-number">2.4.</span> <span class="nav-text">2-3 PhoneWindow类的installDecor方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-Window类内部接口Callback的onContentChanged方法"><span class="nav-number">2.5.</span> <span class="nav-text">2-4 Window类内部接口Callback的onContentChanged方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-setContentView源码分析总结"><span class="nav-number">2.6.</span> <span class="nav-text">2-5 setContentView源码分析总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -862,6 +719,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
 
   
 
@@ -887,6 +748,10 @@
   
     
 
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2144625"></script>
+      <!-- UY END -->
     
   
 
