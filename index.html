@@ -258,6 +258,343 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/28/在Mac下使用NDK编译FFMpeg3.3.4并应用到Android项目/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lyuanhui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lyuanhui's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/28/在Mac下使用NDK编译FFMpeg3.3.4并应用到Android项目/" itemprop="url">在Mac下使用NDK编译FFmpeg3.3.4</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-28T15:32:31+08:00">
+                2017-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/09/28/在Mac下使用NDK编译FFMpeg3.3.4并应用到Android项目/" class="leancloud_visitors" data-flag-title="在Mac下使用NDK编译FFmpeg3.3.4">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>FFmpeg是一套非常强大的音视频处理工具，许多开发过多媒体的朋友都绕不开它，围绕着FFmpeg可以进行诸如音视频解码，裁剪，拼接，音视频合并，以及支持多种流媒体的协议等等</p>
+<p>今天就用目前最新的<code>ffmpeg3.3.4</code>源码，使用NDK进行交叉编译，生成Android项目上可以使用的库，然后在APP上输出当前FFmpeg的配置</p>
+<p>我的编译环境和IDE如下：</p>
+<ul>
+<li>ffmpeg 3.3.4 版本源码</li>
+<li>macOS 10.12.5</li>
+<li>NDK 13.1.3345770</li>
+<li>Android Studio 2.3.3</li>
+</ul>
+<h2 id="编译FFmpeg类库"><a href="#编译FFmpeg类库" class="headerlink" title="编译FFmpeg类库"></a>编译FFmpeg类库</h2><h3 id="下载FFmpeg源码"><a href="#下载FFmpeg源码" class="headerlink" title="下载FFmpeg源码"></a>下载FFmpeg源码</h3><p>下载源码的方式有两种：</p>
+<ul>
+<li>在GitHub上项目主页clone下来：<a href="https://github.com/FFmpeg/FFmpeg" target="_blank" rel="external">https://github.com/FFmpeg/FFmpeg</a></li>
+<li>在FFmpeg官网上下载源码：<a href="http://ffmpeg.org/download.html" target="_blank" rel="external">http://ffmpeg.org/download.html</a></li>
+</ul>
+<p>我这里是通过官网下载的，解压后如下：</p>
+<p><img src="../images/build_ffmpeg_1.png" width="30%" height="30%/"></p>
+<h3 id="配置脚本"><a href="#配置脚本" class="headerlink" title="配置脚本"></a>配置脚本</h3><h4 id="配置configure"><a href="#配置configure" class="headerlink" title="配置configure"></a>配置configure</h4><p>由于编译出来的动态库的版本号在文件名后缀.so之后，在Android上是识别不了的，比如长下面这样：</p>
+<p><img src="../images/build_ffmpeg_2.png" width="30%" height="30%/"></p>
+<p>这时候需要对源码根目录下的configure进行一下小修改，我这个FFmpeg版本是在3305行开始，把</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SLIBNAME_WITH_MAJOR='$(SLIBNAME).$(LIBMAJOR)'</div><div class="line">LIB_INSTALL_EXTRA_CMD='$$(RANLIB) "$(LIBDIR)/$(LIBNAME)"'</div><div class="line">SLIB_INSTALL_NAME='$(SLIBNAME_WITH_VERSION)'</div><div class="line">SLIB_INSTALL_LINKS='$(SLIBNAME_WITH_MAJOR) $(SLIBNAME)'</div></pre></td></tr></table></figure>
+<p>注释掉或者替换成下面这段</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SLIBNAME_WITH_MAJOR='$(SLIBPREF)$(FULLNAME)-$(LIBMAJOR)$(SLIBSUF)'  </div><div class="line">LIB_INSTALL_EXTRA_CMD='$$(RANLIB)"$(LIBDIR)/$(LIBNAME)"'  </div><div class="line">SLIB_INSTALL_NAME='$(SLIBNAME_WITH_MAJOR)'  </div><div class="line">SLIB_INSTALL_LINKS='$(SLIBNAME)'</div></pre></td></tr></table></figure>
+<p>修改后的配置如下图，我这里选择的是注释掉：</p>
+<p><img src="../images/build_ffmpeg_3.png" width="30%" height="30%/"></p>
+<h4 id="配置my-build-android-sh"><a href="#配置my-build-android-sh" class="headerlink" title="配置my_build_android.sh"></a>配置my_build_android.sh</h4><p>这个文件源码是没有的，需要我们在源码根目录下手动新建一个。此脚本配置网上有很多，但是因为不同的人编译时用的系统，用的NDK版本，都不可能完全一样，所以这里一定要根据自己的实际情况，一步步找到自己系统ndk所在的目录和<code>arm-linux-androideabi-xx</code>的版本，写到配置上面</p>
+<p>另外如果你复制网上的脚本时候有带上空格等情况，运行脚本的时候也有可能报错，这时候需要好好检查</p>
+<p>这里提供一份我自己编译时用到的脚本供参考：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"># ndk环境    </div><div class="line">export NDK=/Users/Lyh/Library/Android/sdk/ndk-bundle</div><div class="line">export SYSROOT=$NDK/platforms/android-21/arch-arm</div><div class="line">export TOOLCHAIN=$NDK/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64</div><div class="line">CPU=armv7-a</div><div class="line"></div><div class="line"># 要保存动态库的目录，这里保存在源码根目录下的android/armv7-a</div><div class="line">export PREFIX=$(pwd)/android/$CPU</div><div class="line">ADDI_CFLAGS=&quot;-marm&quot;</div><div class="line">function build_android</div><div class="line">&#123;</div><div class="line">./configure --target-os=linux --prefix=$PREFIX \</div><div class="line">    --enable-cross-compile \</div><div class="line">    --enable-shared \</div><div class="line">    --disable-static \</div><div class="line">    --disable-doc \</div><div class="line">    --disable-ffmpeg \</div><div class="line">    --disable-ffplay \</div><div class="line">    --disable-ffprobe \</div><div class="line">    --disable-ffserver \</div><div class="line">    --disable-avdevice \</div><div class="line">    --disable-doc \</div><div class="line">    --disable-symver \</div><div class="line">    --cross-prefix=$TOOLCHAIN/bin/arm-linux-androideabi- \</div><div class="line">    --arch=arm \</div><div class="line">    --sysroot=$SYSROOT \</div><div class="line">    --extra-cflags=&quot;-Os -fpic $ADDI_CFLAGS&quot; \</div><div class="line">    --extra-ldflags=&quot;$ADDI_LDFLAGS&quot; \</div><div class="line">    $ADDITIONAL_CONFIGURE_FLAG</div><div class="line">make clean</div><div class="line"># 不确定自己上面的目录或者环境有没有错误时</div><div class="line"># 可以先注释一下下面两个命令</div><div class="line">make</div><div class="line">make install</div><div class="line">&#125;</div><div class="line">build_android</div></pre></td></tr></table></figure>
+<h3 id="执行脚本生成so和头文件"><a href="#执行脚本生成so和头文件" class="headerlink" title="执行脚本生成so和头文件"></a>执行脚本生成so和头文件</h3><p>进入源码所在目录，建好<code>my_build_android.sh</code>后，第一次执行会提示权限不够，分配权限后重新执行即可，如下图：</p>
+<p><img src="../images/build_ffmpeg_4.png" width="30%" height="30%/"></p>
+<p>NDK环境和目录执行完正常如下(此时因为不确定环境有无错误，还未执行make)：</p>
+<p><img src="../images/build_ffmpeg_5.png" width="30%" height="30%/"></p>
+<p>这里有个警告可以先忽略，我们在终端继续先执行<code>make</code>和再<code>make install</code></p>
+<p>大约二十分钟左右以后，可以看到已经生成动态库(lib目录)和头文件(include目录)：</p>
+<p><img src="../images/build_ffmpeg_6.png" width="30%" height="30%/"></p>
+<p><strong>注意</strong>：</p>
+<p>这里有个小技巧，就是在第一次运行你的脚本还不确定有没有错时，可以先把<code>make</code>和<code>make install</code>注释掉，这样就不会因为你脚本配置的目录或者环境有问题时，仍然去继续<code>make</code>和<code>make install</code>的执行，然后把你环境的错误给冲掉，给查找问题带来困难</p>
+<p>此外<code>make</code>执行的时间比较长，如果等到生成.o文件出错时，或者<code>make</code>执行完了，才发现没有正常生成自己想要的文件时再来检查，那样就浪费非常多时间了</p>
+<p><strong>总结</strong>：</p>
+<p>先确保NDK环境和目录没报错，再去执行<code>make</code>命令</p>
+<h2 id="在Android项目上使用"><a href="#在Android项目上使用" class="headerlink" title="在Android项目上使用"></a>在Android项目上使用</h2><h3 id="创建Android项目"><a href="#创建Android项目" class="headerlink" title="创建Android项目"></a>创建Android项目</h3><p>跟创建一般的项目稍有不同的是下面两个勾选<br>添加C++支持<br><img src="../images/build_ffmpeg_7.png" width="30%" height="30%/"></p>
+<p><img src="../images/build_ffmpeg_8.png" width="30%" height="30%/"></p>
+<h3 id="把生成的头文件和so导入到Android项目"><a href="#把生成的头文件和so导入到Android项目" class="headerlink" title="把生成的头文件和so导入到Android项目"></a>把生成的头文件和so导入到Android项目</h3><p>这里我们参照NDK-Sample的hello-libs写法，smaple的下载地址是：<a href="https://github.com/googlesamples/android-ndk" target="_blank" rel="external">https://github.com/googlesamples/android-ndk</a>  ，已经有的可以不用再下<br>把第三方的so放到项目根目录中，结构如下：</p>
+<p><img src="../images/build_ffmpeg_9.png" width="30%" height="30%/"></p>
+<h3 id="编写CmakeList和Gradle"><a href="#编写CmakeList和Gradle" class="headerlink" title="编写CmakeList和Gradle"></a>编写CmakeList和Gradle</h3><p>把hello-libs复制到我们的项目中进行改造，原sample的cmakelist内容如下：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># Copyright (C) The Android Open Source Project</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># Licensed under the Apache License, Version 2.0 (the "License");</span></div><div class="line"><span class="comment"># you may not use this file except in compliance with the License.</span></div><div class="line"><span class="comment"># You may obtain a copy of the License at</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#      http://www.apache.org/licenses/LICENSE-2.0</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># Unless required by applicable law or agreed to in writing, software</span></div><div class="line"><span class="comment"># distributed under the License is distributed on an "AS IS" BASIS,</span></div><div class="line"><span class="comment"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></div><div class="line"><span class="comment"># See the License for the specific language governing permissions and</span></div><div class="line"><span class="comment"># limitations under the License.</span></div><div class="line"><span class="comment">#</span></div><div class="line"></div><div class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.4</span>.<span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="comment"># configure import libs</span></div><div class="line"><span class="keyword">set</span>(distribution_DIR <span class="variable">$&#123;CMAKE_SOURCE_DIR&#125;</span>/../../../../distribution)</div><div class="line"></div><div class="line"><span class="keyword">add_library</span>(lib_gmath STATIC IMPORTED)</div><div class="line"><span class="keyword">set_target_properties</span>(lib_gmath PROPERTIES IMPORTED_LOCATION</div><div class="line">    <span class="variable">$&#123;distribution_DIR&#125;</span>/gmath/lib/<span class="variable">$&#123;ANDROID_ABI&#125;</span>/libgmath.a)</div><div class="line"></div><div class="line"><span class="comment"># shared lib will also be tucked into APK and sent to target</span></div><div class="line"><span class="comment"># refer to app/build.gradle, jniLibs section for that purpose.</span></div><div class="line"><span class="comment"># $&#123;ANDROID_ABI&#125; is handy for our purpose here. Probably this $&#123;ANDROID_ABI&#125; is</span></div><div class="line"><span class="comment"># the most valuable thing of this sample, the rest are pretty much normal cmake</span></div><div class="line"><span class="keyword">add_library</span>(lib_gperf SHARED IMPORTED)</div><div class="line"><span class="keyword">set_target_properties</span>(lib_gperf PROPERTIES IMPORTED_LOCATION</div><div class="line">    <span class="variable">$&#123;distribution_DIR&#125;</span>/gperf/lib/<span class="variable">$&#123;ANDROID_ABI&#125;</span>/libgperf.so)</div><div class="line"></div><div class="line"><span class="comment"># build application's shared lib</span></div><div class="line"><span class="keyword">set</span>(CMAKE_CXX_FLAGS <span class="string">"$&#123;CMAKE_CXX_FLAGS&#125; -std=gnu++11"</span>)</div><div class="line"></div><div class="line"><span class="keyword">add_library</span>(hello-libs SHARED</div><div class="line">            hello-libs.cpp)</div><div class="line"></div><div class="line">target_include_directories(hello-libs PRIVATE</div><div class="line">                           <span class="variable">$&#123;distribution_DIR&#125;</span>/gmath/<span class="keyword">include</span></div><div class="line">                           <span class="variable">$&#123;distribution_DIR&#125;</span>/gperf/<span class="keyword">include</span>)</div><div class="line"></div><div class="line"><span class="keyword">target_link_libraries</span>(hello-libs</div><div class="line">                      android</div><div class="line">                      lib_gmath</div><div class="line">                      lib_gperf</div><div class="line">                      log)</div></pre></td></tr></table></figure>
+<p>把大段注释删掉，改写成如下</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.4</span>.<span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="comment"># configure import libs</span></div><div class="line"><span class="comment"># 这里跟Demo有点不一样要注意一下，因为DemoD的CMakelist文件是在app下面的cpp目录中</span></div><div class="line"><span class="keyword">set</span>(distribution_DIR <span class="variable">$&#123;CMAKE_SOURCE_DIR&#125;</span>/../ffmpeg)</div><div class="line"></div><div class="line"><span class="keyword">add_library</span>(avcodec-<span class="number">57</span> SHARED IMPORTED)</div><div class="line"><span class="keyword">set_target_properties</span>(avcodec-<span class="number">57</span>  PROPERTIES IMPORTED_LOCATION</div><div class="line">    <span class="variable">$&#123;distribution_DIR&#125;</span>/lib/armeabi-v7a/libavcodec-<span class="number">57</span>.so)</div><div class="line"></div><div class="line"><span class="comment"># build application's shared lib</span></div><div class="line"><span class="keyword">set</span>(CMAKE_CXX_FLAGS <span class="string">"$&#123;CMAKE_CXX_FLAGS&#125; -std=gnu++11"</span>)</div><div class="line"></div><div class="line"><span class="keyword">add_library</span>(native-lib SHARED</div><div class="line">            src/main/cpp/native-lib.cpp)</div><div class="line"></div><div class="line"><span class="keyword">include_directories</span>(native-lib PRIVATE</div><div class="line">                    <span class="variable">$&#123;distribution_DIR&#125;</span>/<span class="keyword">include</span>)</div><div class="line"></div><div class="line"><span class="keyword">target_link_libraries</span>(native-lib</div><div class="line">                      android</div><div class="line">                      avcodec-<span class="number">57</span></div><div class="line">                      log)</div></pre></td></tr></table></figure>
+<p>说明：</p>
+<ul>
+<li>有个set方法的地方需要格外注意一下</li>
+<li>hello-libs是同时添加静态库和动态库，这里不需要，就把添加静态库部分删掉了</li>
+</ul>
+<p>这里我们暂且只加入avcodec-57这个动态库</p>
+<p>另外app目录下的gradle文件也要配置一下：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">  compileSdkVersion <span class="number">26</span></div><div class="line">  buildToolsVersion <span class="string">"26.0.0"</span></div><div class="line">  defaultConfig &#123;</div><div class="line">    applicationId <span class="string">"org.lyh.ffmpegdemo"</span></div><div class="line">    minSdkVersion <span class="number">14</span></div><div class="line">    targetSdkVersion <span class="number">26</span></div><div class="line">    versionCode <span class="number">1</span></div><div class="line">    versionName <span class="string">"1.0"</span></div><div class="line">    testInstrumentationRunner <span class="string">"android.support.test.runner.AndroidJUnitRunner"</span></div><div class="line">    ndk &#123;</div><div class="line">      abiFilters <span class="string">'armeabi-v7a'</span></div><div class="line">    &#125;</div><div class="line">    externalNativeBuild &#123;</div><div class="line">      cmake &#123;</div><div class="line">        cppFlags <span class="string">"-frtti -fexceptions"</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  buildTypes &#123;</div><div class="line">    release &#123;</div><div class="line">      minifyEnabled <span class="literal">false</span></div><div class="line">      proguardFiles getDefaultProguardFile(<span class="string">'proguard-android.txt'</span>), <span class="string">'proguard-rules.pro'</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  sourceSets &#123;</div><div class="line">    main &#123;</div><div class="line">      <span class="comment">// 注意路径要写对</span></div><div class="line">      jniLibs.srcDirs = [<span class="string">'../ffmpeg/lib'</span>]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  externalNativeBuild &#123;</div><div class="line">    cmake &#123;</div><div class="line">      path <span class="string">'CMakeLists.txt'</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>重点注意的是<code>jniLibs.srcDirs</code>的目录要配置正确，架构这里只生成<code>armv7-a</code></p>
+<h3 id="编写C代码和Java代码"><a href="#编写C代码和Java代码" class="headerlink" title="编写C代码和Java代码"></a>编写C代码和Java代码</h3><p>C代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;jni.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"libavcodec/avcodec.h"</span></span></div><div class="line">    JNIEXPORT jstring JNICALL</div><div class="line">    Java_org_lyh_ffmpegdemo_MainActivity_stringFromJNI(</div><div class="line">            JNIEnv *env,</div><div class="line">            jobject <span class="comment">/* this */</span>) &#123;</div><div class="line">    <span class="comment">//    std::string hello = "Hello from C++";</span></div><div class="line">        <span class="keyword">char</span> info[<span class="number">10000</span>] = &#123;<span class="number">0</span>&#125;;</div><div class="line">        <span class="built_in">sprintf</span>(info, <span class="string">"%s\n"</span>, avcodec_configuration());</div><div class="line">        <span class="keyword">return</span> env-&gt;NewStringUTF(info);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>原先自动生成的项目是运行后屏幕显示”Hello from C++“。这里修改一下返回的字符串，改成得到FFmpeg的配置信息返回到Java层，然后显示到Textview中。</p>
+<p>Java代码没做修改，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// Used to load the 'native-lib' library on application startup.</span></div><div class="line">  <span class="keyword">static</span> &#123;</div><div class="line">    System.loadLibrary(<span class="string">"native-lib"</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">    <span class="comment">// Example of a call to a native method</span></div><div class="line">    TextView tv = (TextView) findViewById(R.id.sample_text);</div><div class="line">    tv.setText(stringFromJNI());</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line"><span class="comment">   * A native method that is implemented by the 'native-lib' native library,</span></div><div class="line"><span class="comment">   * which is packaged with this application.</span></div><div class="line"><span class="comment">   */</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">native</span> String <span class="title">stringFromJNI</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h3><p>最后运行如下：<br><img src="../images/build_ffmpeg_10.png" width="30%" height="30%/"></p>
+<h2 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h2><ul>
+<li><a href="http://blog.csdn.net/leixiaohua1020/article/details/47008825" target="_blank" rel="external">最简单的基于FFmpeg的移动端例子：Android HelloWorld</a></li>
+<li><a href="http://www.jianshu.com/p/c7bab9c020f0" target="_blank" rel="external">在Mac下编译 FFmpeg ，并在Android中使用</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/20/解决OkHttp下载时获取不到文件的大小/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lyuanhui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lyuanhui's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/20/解决OkHttp下载时获取不到文件的大小/" itemprop="url">解决使用okhttp作为网络请求时获取不到下载文件的大小</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T16:36:32+08:00">
+                2017-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/09/20/解决OkHttp下载时获取不到文件的大小/" class="leancloud_visitors" data-flag-title="解决使用okhttp作为网络请求时获取不到下载文件的大小">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>今天在项目中遇到下载某些文件一点击进度就显示100%(文件很大，网速也不快的情况下也是一点击就显示完成)，下载用的是<code>https://github.com/lingochamp/FileDownloader</code>，这个下载器里面下载请求使用的OkHttpClient</p>
+<p>经过抓包对比发现，下载的文件，进度显示不正常的，是缺少了<code>Content-Length</code>，如下图:</p>
+<p><img src="../images/no_content_length_1.jpg" width="50%" height="50%"><br><img src="../images/no_content_length_2.jpg" width="50%" height="50%"></p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>出现<code>Content-Length</code>缺少是因为服务器会对下发的资源做GZip操作，解决方法就是在请求头里面加入</p>
+<p><code>”Accept-Encoding”, “identity”</code>。</p>
+<p>在FileDownloader里面使用的OkHttpClient加入拦截器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Request oldRequest = chain.request();</div><div class="line"></div><div class="line"><span class="comment">// 拼凑下载请求的header头</span></div><div class="line">Headers.Builder headBuilder = <span class="keyword">new</span> Headers.Builder();</div><div class="line">headBuilder.add(ACCEPT_ENCODING,IDENTITY);</div><div class="line"><span class="comment">// 构造新的request</span></div><div class="line">Request.Builder newBuilder = oldRequest.newBuilder();</div><div class="line">newBuilder.method(oldRequest.method(),oldRequest.body());</div><div class="line">Request newRequest = newBuilder.headers(headBuilder.build()).build();</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">  <span class="comment">// 执行新请求</span></div><div class="line">  response = chain.proceed(newRequest);</div><div class="line">&#125;<span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">  LogUtil.error(TAG,e.getMessage());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料:"></a>参考资料:</h3><ul>
+<li><a href="http://www.voidcn.com/article/p-njxxgoys-ot.html" target="_blank" rel="external">OKHttp与丢失掉的Content-Length</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/15/setContentView源码解析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -598,7 +935,7 @@
 <p>执行完了之后，在Demo里面的各个module下的libs就会生成对应的so了，如armv7a的module下的路径<code>ijkplayer-android/android/ijkplayer/ijkplayer-armv7a/src/main/libs</code>。</p>
 <p>想要查看Demo，只需把<code>ijkplayer-android/android/ijkplayer</code>导入进去Android Studio里面</p>
 <h2 id="5-定制自己需要的解码器"><a href="#5-定制自己需要的解码器" class="headerlink" title="5.定制自己需要的解码器"></a>5.定制自己需要的解码器</h2><p>上面编译的是<code>module-default.sh</code>配置的SO，<code>libijkffmepg.so</code>大约有7MB左右，实际上对于大多数手机端上的视频来说，我们并不需要用到那么多解码器，这无疑增大了包的体积。</p>
-<p>再回到我们一开始的需求，我们只需要在原来compile进来的so基础上增加对MEPG-4视频编码的支持就行了。</p>
+<p>再回到我们一开始的需求，我们只需要在原来compile进来的    so基础上增加对MEPG-4视频编码的支持就行了。</p>
 <p>打开config目录下的<code>module-lite.sh</code>，在<code>#./configure --list-decoders</code>末尾加入下面这行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export COMMON_FF_CFG_FLAGS=&quot;$COMMON_FF_CFG_FLAGS --enable-decoder=mpeg4&quot;</div></pre></td></tr></table></figure>
 <p><img src="../images/build_ijkplayer_7.png" width="50%" height="50%" align="middle"></p>
@@ -697,7 +1034,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

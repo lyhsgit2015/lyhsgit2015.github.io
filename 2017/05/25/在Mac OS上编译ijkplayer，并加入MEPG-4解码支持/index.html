@@ -111,7 +111,7 @@
 <meta property="og:image" content="http://yoursite.com/2017/05/25/images/build_ijkplayer_6.png">
 <meta property="og:image" content="http://yoursite.com/2017/05/25/images/build_ijkplayer_7.png">
 <meta property="og:image" content="http://yoursite.com/2017/05/25/images/build_ijkplayer_8.png">
-<meta property="og:updated_time" content="2017-09-13T01:26:11.000Z">
+<meta property="og:updated_time" content="2017-09-25T09:25:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Mac OS上编译ijkplayer，并加入MPEG-4解码支持">
 <meta name="twitter:description" content="12compile &apos;tv.danmaku.ijk.media:ijkplayer-java:0.7.8.1&apos;compile &apos;tv.danmaku.ijk.media:ijkplayer-armv7a:0.7.8.1&apos; 需求：项目中gradle里引入的ijkplayer默认可以支持播放avcodec编码的mp4格式的视频，但是不支持播放mp4格式MPEG-4编码的视频(现象为视频出现黑屏，可听到">
@@ -386,7 +386,7 @@
 <p>执行完了之后，在Demo里面的各个module下的libs就会生成对应的so了，如armv7a的module下的路径<code>ijkplayer-android/android/ijkplayer/ijkplayer-armv7a/src/main/libs</code>。</p>
 <p>想要查看Demo，只需把<code>ijkplayer-android/android/ijkplayer</code>导入进去Android Studio里面</p>
 <h2 id="5-定制自己需要的解码器"><a href="#5-定制自己需要的解码器" class="headerlink" title="5.定制自己需要的解码器"></a>5.定制自己需要的解码器</h2><p>上面编译的是<code>module-default.sh</code>配置的SO，<code>libijkffmepg.so</code>大约有7MB左右，实际上对于大多数手机端上的视频来说，我们并不需要用到那么多解码器，这无疑增大了包的体积。</p>
-<p>再回到我们一开始的需求，我们只需要在原来compile进来的so基础上增加对MEPG-4视频编码的支持就行了。</p>
+<p>再回到我们一开始的需求，我们只需要在原来compile进来的    so基础上增加对MEPG-4视频编码的支持就行了。</p>
 <p>打开config目录下的<code>module-lite.sh</code>，在<code>#./configure --list-decoders</code>末尾加入下面这行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export COMMON_FF_CFG_FLAGS=&quot;$COMMON_FF_CFG_FLAGS --enable-decoder=mpeg4&quot;</div></pre></td></tr></table></figure>
 <p><img src="../images/build_ijkplayer_7.png" width="50%" height="50%" align="middle"></p>
@@ -521,7 +521,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
