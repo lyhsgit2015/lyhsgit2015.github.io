@@ -103,6 +103,7 @@
 <meta property="og:description" content="概述FFmpeg是一套非常强大的音视频处理工具，许多开发过多媒体的朋友都绕不开它，围绕着FFmpeg可以进行诸如音视频解码，裁剪，拼接，音视频合并，以及支持多种流媒体的协议等等 今天就用目前最新的ffmpeg3.3.4源码，使用NDK进行交叉编译，生成Android项目上可以使用的库，然后在APP上输出当前FFmpeg的配置 我的编译环境和IDE如下：  ffmpeg 3.3.4 版本源码 mac">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2017/09/28/images/build_ffmpeg_1.png">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fnbcbhl1gxj30mq0lcjuq.jpg">
 <meta property="og:image" content="http://yoursite.com/2017/09/28/images/build_ffmpeg_2.png">
 <meta property="og:image" content="http://yoursite.com/2017/09/28/images/build_ffmpeg_3.png">
 <meta property="og:image" content="http://yoursite.com/2017/09/28/images/build_ffmpeg_4.png">
@@ -112,7 +113,7 @@
 <meta property="og:image" content="http://yoursite.com/2017/09/28/images/build_ffmpeg_8.png">
 <meta property="og:image" content="http://yoursite.com/2017/09/28/images/build_ffmpeg_9.png">
 <meta property="og:image" content="http://yoursite.com/2017/09/28/images/build_ffmpeg_10.png">
-<meta property="og:updated_time" content="2017-10-10T03:50:16.000Z">
+<meta property="og:updated_time" content="2018-01-10T03:23:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Mac下使用NDK编译FFmpeg3.3.4">
 <meta name="twitter:description" content="概述FFmpeg是一套非常强大的音视频处理工具，许多开发过多媒体的朋友都绕不开它，围绕着FFmpeg可以进行诸如音视频解码，裁剪，拼接，音视频合并，以及支持多种流媒体的协议等等 今天就用目前最新的ffmpeg3.3.4源码，使用NDK进行交叉编译，生成Android项目上可以使用的库，然后在APP上输出当前FFmpeg的配置 我的编译环境和IDE如下：  ffmpeg 3.3.4 版本源码 mac">
@@ -363,7 +364,8 @@
 </ul>
 <p>我这里是通过官网下载的，解压后如下：</p>
 <p><img src="../images/build_ffmpeg_1.png" width="50%" height="50%/"></p>
-<h3 id="配置脚本"><a href="#配置脚本" class="headerlink" title="配置脚本"></a>配置脚本</h3><h4 id="配置configure"><a href="#配置configure" class="headerlink" title="配置configure"></a>配置configure</h4><p>由于默认configure脚本编译出来的动态库版本号在文件名后缀.so之后，在Android上是识别不了的，比如长下面这样：</p>
+<h3 id="配置脚本"><a href="#配置脚本" class="headerlink" title="配置脚本"></a>配置脚本</h3><p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fnbcbhl1gxj30mq0lcjuq.jpg" width="50%/"></p>
+<h4 id="配置configure"><a href="#配置configure" class="headerlink" title="配置configure"></a>配置configure</h4><p>由于默认configure脚本编译出来的动态库版本号在文件名后缀.so之后，在Android上是识别不了的，比如长下面这样：</p>
 <p><img src="../images/build_ffmpeg_2.png" width="50%" height="50%/"></p>
 <p>这时候需要对源码根目录下的configure进行一下小修改，我这个FFmpeg版本是在3305行开始，把下面四行</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SLIBNAME_WITH_MAJOR='$(SLIBNAME).$(LIBMAJOR)'</div><div class="line">LIB_INSTALL_EXTRA_CMD='$$(RANLIB) "$(LIBDIR)/$(LIBNAME)"'</div><div class="line">SLIB_INSTALL_NAME='$(SLIBNAME_WITH_VERSION)'</div><div class="line">SLIB_INSTALL_LINKS='$(SLIBNAME_WITH_MAJOR) $(SLIBNAME)'</div></pre></td></tr></table></figure>
