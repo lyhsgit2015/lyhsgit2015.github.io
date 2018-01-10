@@ -1,11 +1,101 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+
+
+
   
-  <title>Lyuanhui&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录Android开发的点滴">
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="记录Android开发的点滴">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Lyuanhui&#39;s Blog">
 <meta property="og:url" content="http://yoursite.com/index.html">
@@ -15,525 +105,1076 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lyuanhui&#39;s Blog">
 <meta name="twitter:description" content="记录Android开发的点滴">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/"/>
+
+
+
+
+
+  <title>Lyuanhui's Blog</title>
   
-    <link rel="alternate" href="/atom.xml" title="Lyuanhui&#39;s Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
+
+
+
+
+
+
+
 
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Lyuanhui&#39;s Blog</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">生活不止眼前的编码</a>
-        </h2>
-      
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lyuanhui's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-在Mac下使用NDK编译FFMpeg3.3.4并应用到Android项目" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/28/在Mac下使用NDK编译FFMpeg3.3.4并应用到Android项目/" class="article-date">
-  <time datetime="2017-09-28T07:32:31.000Z" itemprop="datePublished">2017-09-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/28/在Mac下使用NDK编译FFMpeg3.3.4并应用到Android项目/">在Mac下使用NDK编译FFmpeg3.3.4</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>FFmpeg是一套非常强大的音视频处理工具，许多开发过多媒体的朋友都绕不开它，围绕着FFmpeg可以进行诸如音视频解码，裁剪，拼接，音视频合并，以及支持多种流媒体的协议等等</p>
-<p>今天就用目前最新的<code>ffmpeg3.3.4</code>源码，使用NDK进行交叉编译，生成Android项目上可以使用的库，然后在APP上输出当前FFmpeg的配置</p>
-<p>我的编译环境和IDE如下：</p>
-<ul>
-<li>ffmpeg 3.3.4 版本源码</li>
-<li>macOS 10.12.5</li>
-<li>NDK 13.1.3345770</li>
-<li>Android Studio 2.3.3</li>
-</ul>
-<h2 id="编译FFmpeg类库"><a href="#编译FFmpeg类库" class="headerlink" title="编译FFmpeg类库"></a>编译FFmpeg类库</h2><h3 id="下载FFmpeg源码"><a href="#下载FFmpeg源码" class="headerlink" title="下载FFmpeg源码"></a>下载FFmpeg源码</h3><p>下载源码的方式有两种：</p>
-<ul>
-<li>在GitHub上项目主页clone下来：<a href="https://github.com/FFmpeg/FFmpeg" target="_blank" rel="external">https://github.com/FFmpeg/FFmpeg</a></li>
-<li>在FFmpeg官网上下载源码：<a href="http://ffmpeg.org/download.html" target="_blank" rel="external">http://ffmpeg.org/download.html</a></li>
-</ul>
-<p>我这里是通过官网下载的，解压后如下：</p>
-<p><img src="../images/build_ffmpeg_1.png" width="50%" height="50%/"></p>
-<h3 id="配置脚本"><a href="#配置脚本" class="headerlink" title="配置脚本"></a>配置脚本</h3><h4 id="配置configure"><a href="#配置configure" class="headerlink" title="配置configure"></a>配置configure</h4><p>由于默认configure脚本编译出来的动态库版本号在文件名后缀.so之后，在Android上是识别不了的，比如长下面这样：</p>
-<p><img src="../images/build_ffmpeg_2.png" width="50%" height="50%/"></p>
-<p>这时候需要对源码根目录下的configure进行一下小修改，我这个FFmpeg版本是在3305行开始，把下面四行</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SLIBNAME_WITH_MAJOR='$(SLIBNAME).$(LIBMAJOR)'</div><div class="line">LIB_INSTALL_EXTRA_CMD='$$(RANLIB) "$(LIBDIR)/$(LIBNAME)"'</div><div class="line">SLIB_INSTALL_NAME='$(SLIBNAME_WITH_VERSION)'</div><div class="line">SLIB_INSTALL_LINKS='$(SLIBNAME_WITH_MAJOR) $(SLIBNAME)'</div></pre></td></tr></table></figure>
-<p>注释掉或者替换成下面这段</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SLIBNAME_WITH_MAJOR='$(SLIBPREF)$(FULLNAME)-$(LIBMAJOR)$(SLIBSUF)'  </div><div class="line">LIB_INSTALL_EXTRA_CMD='$$(RANLIB)"$(LIBDIR)/$(LIBNAME)"'  </div><div class="line">SLIB_INSTALL_NAME='$(SLIBNAME_WITH_MAJOR)'  </div><div class="line">SLIB_INSTALL_LINKS='$(SLIBNAME)'</div></pre></td></tr></table></figure>
-<p>修改后的配置如下图，我这里选择的是注释掉：</p>
-<p><img src="../images/build_ffmpeg_3.png" width="50%" height="50%/"></p>
-<h4 id="配置my-build-android-sh"><a href="#配置my-build-android-sh" class="headerlink" title="配置my_build_android.sh"></a>配置my_build_android.sh</h4><p>这个文件源码是没有的，需要我们在源码根目录下手动新建一个。此脚本配置网上有很多，但是因为不同的人编译时用的系统，用的NDK版本，都不可能完全一样，所以这里一定要根据自己的实际情况，一步步找到自己系统ndk所在的目录和<code>arm-linux-androideabi-xx</code>的版本，写到配置上面</p>
-<p>另外如果你复制网上的脚本时候有带上空格等情况，运行脚本的时候也有可能报错，这时候需要好好检查</p>
-<p>这里提供一份我自己编译时用到的脚本供参考：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"># ndk环境    </div><div class="line">export NDK=/Users/Lyh/Library/Android/sdk/ndk-bundle</div><div class="line">export SYSROOT=$NDK/platforms/android-21/arch-arm</div><div class="line">export TOOLCHAIN=$NDK/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64</div><div class="line">CPU=armv7-a</div><div class="line"></div><div class="line"># 要保存动态库的目录，这里保存在源码根目录下的android/armv7-a</div><div class="line">export PREFIX=$(pwd)/android/$CPU</div><div class="line">ADDI_CFLAGS=&quot;-marm&quot;</div><div class="line">function build_android</div><div class="line">&#123;</div><div class="line">./configure --target-os=linux --prefix=$PREFIX \</div><div class="line">    --enable-cross-compile \</div><div class="line">    --enable-shared \</div><div class="line">    --disable-static \</div><div class="line">    --disable-doc \</div><div class="line">    --disable-ffmpeg \</div><div class="line">    --disable-ffplay \</div><div class="line">    --disable-ffprobe \</div><div class="line">    --disable-ffserver \</div><div class="line">    --disable-avdevice \</div><div class="line">    --disable-doc \</div><div class="line">    --disable-symver \</div><div class="line">    --cross-prefix=$TOOLCHAIN/bin/arm-linux-androideabi- \</div><div class="line">    --arch=arm \</div><div class="line">    --sysroot=$SYSROOT \</div><div class="line">    --extra-cflags=&quot;-Os -fpic $ADDI_CFLAGS&quot; \</div><div class="line">    --extra-ldflags=&quot;$ADDI_LDFLAGS&quot; \</div><div class="line">    $ADDITIONAL_CONFIGURE_FLAG</div><div class="line">make clean</div><div class="line"># 不确定自己上面的目录或者环境有没有错误时</div><div class="line"># 可以先注释一下下面两个命令</div><div class="line">make</div><div class="line">make install</div><div class="line">&#125;</div><div class="line">build_android</div></pre></td></tr></table></figure>
-<h3 id="执行脚本生成so和头文件"><a href="#执行脚本生成so和头文件" class="headerlink" title="执行脚本生成so和头文件"></a>执行脚本生成so和头文件</h3><p>进入源码所在目录，建好<code>my_build_android.sh</code>后，第一次执行会提示权限不够，分配权限后重新执行即可，如下图：</p>
-<p><img src="../images/build_ffmpeg_4.png" width="50%" height="50%/"></p>
-<p>NDK环境和目录执行完正常如下(此时因为不确定环境有无错误，还未执行make)：</p>
-<p><img src="../images/build_ffmpeg_5.png" width="50%" height="50%/"></p>
-<p>这里有个警告可以先忽略，我们在终端继续先执行<code>make</code>和再<code>make install</code></p>
-<p>大约二十分钟左右以后，可以看到已经生成动态库(lib目录)和头文件(include目录)：</p>
-<p><img src="../images/build_ffmpeg_6.png" width="50%" height="50%/"></p>
-<p><strong>注意</strong>：</p>
-<p>这里有个小技巧，就是在第一次运行你的脚本还不确定有没有错时，可以先把<code>make</code>和<code>make install</code>注释掉，这样就不会因为你脚本配置的目录或者环境有问题时，仍然去继续<code>make</code>和<code>make install</code>的执行，然后把你环境的错误给冲掉，给查找问题带来困难</p>
-<p>此外<code>make</code>执行的时间比较长，如果是到生成.o文件时出错被中断了，或者<code>make</code>执行完了，才发现没有正确生成so的时候再回去检查原因，就浪费非常多时间了</p>
-<p><strong>总结</strong>：</p>
-<p>先确保NDK环境和目录没报错，再去执行<code>make</code>命令</p>
-<h2 id="在Android项目上使用"><a href="#在Android项目上使用" class="headerlink" title="在Android项目上使用"></a>在Android项目上使用</h2><h3 id="创建Android项目"><a href="#创建Android项目" class="headerlink" title="创建Android项目"></a>创建Android项目</h3><p>跟创建一般的项目稍有不同的是下面两个勾选<br>添加C++支持<br><img src="../images/build_ffmpeg_7.png" width="50%" height="50%/"></p>
-<p><img src="../images/build_ffmpeg_8.png" width="50%" height="50%/"></p>
-<h3 id="把生成的头文件和so导入到Android项目"><a href="#把生成的头文件和so导入到Android项目" class="headerlink" title="把生成的头文件和so导入到Android项目"></a>把生成的头文件和so导入到Android项目</h3><p>这里我们参照NDK-Sample的hello-libs写法，smaple的下载地址是：<a href="https://github.com/googlesamples/android-ndk" target="_blank" rel="external">https://github.com/googlesamples/android-ndk</a>  ，已经有的可以不用再下<br>把第三方的so放到项目根目录中，结构如下：</p>
-<p><img src="../images/build_ffmpeg_9.png" width="50%" height="50%/"></p>
-<h3 id="编写CmakeList和Gradle"><a href="#编写CmakeList和Gradle" class="headerlink" title="编写CmakeList和Gradle"></a>编写CmakeList和Gradle</h3><p>把hello-libs项目里的<code>CmakeList.txt</code>文件复制到我们的项目中进行改造，原sample的cmakelist内容如下：</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># Copyright (C) The Android Open Source Project</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># Licensed under the Apache License, Version 2.0 (the "License");</span></div><div class="line"><span class="comment"># you may not use this file except in compliance with the License.</span></div><div class="line"><span class="comment"># You may obtain a copy of the License at</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#      http://www.apache.org/licenses/LICENSE-2.0</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># Unless required by applicable law or agreed to in writing, software</span></div><div class="line"><span class="comment"># distributed under the License is distributed on an "AS IS" BASIS,</span></div><div class="line"><span class="comment"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></div><div class="line"><span class="comment"># See the License for the specific language governing permissions and</span></div><div class="line"><span class="comment"># limitations under the License.</span></div><div class="line"><span class="comment">#</span></div><div class="line"></div><div class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.4</span>.<span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="comment"># configure import libs</span></div><div class="line"><span class="keyword">set</span>(distribution_DIR <span class="variable">$&#123;CMAKE_SOURCE_DIR&#125;</span>/../../../../distribution)</div><div class="line"></div><div class="line"><span class="keyword">add_library</span>(lib_gmath STATIC IMPORTED)</div><div class="line"><span class="keyword">set_target_properties</span>(lib_gmath PROPERTIES IMPORTED_LOCATION</div><div class="line">    <span class="variable">$&#123;distribution_DIR&#125;</span>/gmath/lib/<span class="variable">$&#123;ANDROID_ABI&#125;</span>/libgmath.a)</div><div class="line"></div><div class="line"><span class="comment"># shared lib will also be tucked into APK and sent to target</span></div><div class="line"><span class="comment"># refer to app/build.gradle, jniLibs section for that purpose.</span></div><div class="line"><span class="comment"># $&#123;ANDROID_ABI&#125; is handy for our purpose here. Probably this $&#123;ANDROID_ABI&#125; is</span></div><div class="line"><span class="comment"># the most valuable thing of this sample, the rest are pretty much normal cmake</span></div><div class="line"><span class="keyword">add_library</span>(lib_gperf SHARED IMPORTED)</div><div class="line"><span class="keyword">set_target_properties</span>(lib_gperf PROPERTIES IMPORTED_LOCATION</div><div class="line">    <span class="variable">$&#123;distribution_DIR&#125;</span>/gperf/lib/<span class="variable">$&#123;ANDROID_ABI&#125;</span>/libgperf.so)</div><div class="line"></div><div class="line"><span class="comment"># build application's shared lib</span></div><div class="line"><span class="keyword">set</span>(CMAKE_CXX_FLAGS <span class="string">"$&#123;CMAKE_CXX_FLAGS&#125; -std=gnu++11"</span>)</div><div class="line"></div><div class="line"><span class="keyword">add_library</span>(hello-libs SHARED</div><div class="line">            hello-libs.cpp)</div><div class="line"></div><div class="line">target_include_directories(hello-libs PRIVATE</div><div class="line">                           <span class="variable">$&#123;distribution_DIR&#125;</span>/gmath/<span class="keyword">include</span></div><div class="line">                           <span class="variable">$&#123;distribution_DIR&#125;</span>/gperf/<span class="keyword">include</span>)</div><div class="line"></div><div class="line"><span class="keyword">target_link_libraries</span>(hello-libs</div><div class="line">                      android</div><div class="line">                      lib_gmath</div><div class="line">                      lib_gperf</div><div class="line">                      log)</div></pre></td></tr></table></figure>
-<p>把大段的注释删掉，再改写后变成了下面这样</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.4</span>.<span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="comment"># configure import libs</span></div><div class="line"><span class="comment"># 这里跟原Demo写法不一样要注意一下，因为Demo的CMakelist文件是在app下面的cpp目录中</span></div><div class="line"><span class="keyword">set</span>(distribution_DIR <span class="variable">$&#123;CMAKE_SOURCE_DIR&#125;</span>/../ffmpeg)</div><div class="line"></div><div class="line"><span class="keyword">add_library</span>(avcodec-<span class="number">57</span> SHARED IMPORTED)</div><div class="line"><span class="keyword">set_target_properties</span>(avcodec-<span class="number">57</span>  PROPERTIES IMPORTED_LOCATION</div><div class="line">    <span class="variable">$&#123;distribution_DIR&#125;</span>/lib/armeabi-v7a/libavcodec-<span class="number">57</span>.so)</div><div class="line"></div><div class="line"><span class="comment"># build application's shared lib</span></div><div class="line"><span class="keyword">set</span>(CMAKE_CXX_FLAGS <span class="string">"$&#123;CMAKE_CXX_FLAGS&#125; -std=gnu++11"</span>)</div><div class="line"></div><div class="line"><span class="keyword">add_library</span>(native-lib SHARED</div><div class="line">            src/main/cpp/native-lib.cpp)</div><div class="line"></div><div class="line"><span class="keyword">include_directories</span>(native-lib PRIVATE</div><div class="line">                    <span class="variable">$&#123;distribution_DIR&#125;</span>/<span class="keyword">include</span>)</div><div class="line"></div><div class="line"><span class="keyword">target_link_libraries</span>(native-lib</div><div class="line">                      android</div><div class="line">                      avcodec-<span class="number">57</span></div><div class="line">                      log)</div></pre></td></tr></table></figure>
-<p>说明：</p>
-<ul>
-<li>有个set方法设置so路径的地方需要格外注意一下，这个错了下面都会影响到</li>
-<li>Demo的hello-libs是同时添加静态库和动态库，这里不需要，就把添加静态库部分删掉了</li>
-</ul>
-<p>这里我们暂且只加入avcodec-57这个动态库</p>
-<p>另外app目录下的gradle文件也要配置一下：    </p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">  compileSdkVersion <span class="number">26</span></div><div class="line">  buildToolsVersion <span class="string">"26.0.0"</span></div><div class="line">  defaultConfig &#123;</div><div class="line">    applicationId <span class="string">"org.lyh.ffmpegdemo"</span></div><div class="line">    minSdkVersion <span class="number">14</span></div><div class="line">    targetSdkVersion <span class="number">26</span></div><div class="line">    versionCode <span class="number">1</span></div><div class="line">    versionName <span class="string">"1.0"</span></div><div class="line">    testInstrumentationRunner <span class="string">"android.support.test.runner.AndroidJUnitRunner"</span></div><div class="line">    ndk &#123;</div><div class="line">      abiFilters <span class="string">'armeabi-v7a'</span></div><div class="line">    &#125;</div><div class="line">    externalNativeBuild &#123;</div><div class="line">      cmake &#123;</div><div class="line">        cppFlags <span class="string">"-frtti -fexceptions"</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  buildTypes &#123;</div><div class="line">    release &#123;</div><div class="line">      minifyEnabled <span class="literal">false</span></div><div class="line">      proguardFiles getDefaultProguardFile(<span class="string">'proguard-android.txt'</span>), <span class="string">'proguard-rules.pro'</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  sourceSets &#123;</div><div class="line">    main &#123;</div><div class="line">      <span class="comment">// 注意路径要写对</span></div><div class="line">      jniLibs.srcDirs = [<span class="string">'../ffmpeg/lib'</span>]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  externalNativeBuild &#123;</div><div class="line">    cmake &#123;</div><div class="line">      path <span class="string">'CMakeLists.txt'</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>重点注意的是<code>jniLibs.srcDirs</code>的目录要配置正确，架构这里只生成<code>armv7-a</code></p>
-<h3 id="编写C代码和Java代码"><a href="#编写C代码和Java代码" class="headerlink" title="编写C代码和Java代码"></a>编写C代码和Java代码</h3><p>C代码如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;jni.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"libavcodec/avcodec.h"</span></span></div><div class="line">    JNIEXPORT jstring JNICALL</div><div class="line">    Java_org_lyh_ffmpegdemo_MainActivity_stringFromJNI(</div><div class="line">            JNIEnv *env,</div><div class="line">            jobject <span class="comment">/* this */</span>) &#123;</div><div class="line">    <span class="comment">//    std::string hello = "Hello from C++";</span></div><div class="line">        <span class="keyword">char</span> info[<span class="number">10000</span>] = &#123;<span class="number">0</span>&#125;;</div><div class="line">        <span class="built_in">sprintf</span>(info, <span class="string">"%s\n"</span>, avcodec_configuration());</div><div class="line">        <span class="keyword">return</span> env-&gt;NewStringUTF(info);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>原先自动生成的项目是运行后屏幕显示”Hello from C++“。这里修改一下返回的字符串，改成得到FFmpeg的配置信息返回到Java层，然后显示到Textview中。</p>
-<p>Java代码没做修改，如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">// Used to load the 'native-lib' library on application startup.</span></div><div class="line">  <span class="keyword">static</span> &#123;</div><div class="line">    System.loadLibrary(<span class="string">"native-lib"</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">    <span class="comment">// Example of a call to a native method</span></div><div class="line">    TextView tv = (TextView) findViewById(R.id.sample_text);</div><div class="line">    tv.setText(stringFromJNI());</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line"><span class="comment">   * A native method that is implemented by the 'native-lib' native library,</span></div><div class="line"><span class="comment">   * which is packaged with this application.</span></div><div class="line"><span class="comment">   */</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">native</span> String <span class="title">stringFromJNI</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h3><p>最后运行如下：<br><img src="../images/build_ffmpeg_10.png" width="50%" height="50%/"></p>
-<h2 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h2><ul>
-<li><a href="http://blog.csdn.net/leixiaohua1020/article/details/47008825" target="_blank" rel="external">最简单的基于FFmpeg的移动端例子：Android HelloWorld</a></li>
-<li><a href="http://www.jianshu.com/p/c7bab9c020f0" target="_blank" rel="external">在Mac下编译 FFmpeg ，并在Android中使用</a></li>
-</ul>
-
+        <p class="site-subtitle">生活不止眼前的编码</p>
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/28/在Mac下使用NDK编译FFMpeg3.3.4并应用到Android项目/" data-id="cjc8f3gfc0007y0ttb9vesfld" class="article-share-link">Delen</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-解决OkHttp下载时获取不到文件的大小" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/20/解决OkHttp下载时获取不到文件的大小/" class="article-date">
-  <time datetime="2017-09-20T08:36:32.000Z" itemprop="datePublished">2017-09-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/20/解决OkHttp下载时获取不到文件的大小/">解决使用okhttp作为网络请求时获取不到下载文件的大小</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>今天在项目中遇到下载某些文件一点击进度就显示100%(文件很大，网速也不快的情况下也是一点击就显示完成)，下载用的是<code>https://github.com/lingochamp/FileDownloader</code>，这个下载器里面下载请求使用的OkHttpClient</p>
-<p>经过抓包对比发现，下载的文件，进度显示不正常的，是缺少了<code>Content-Length</code>，如下图:</p>
-<p><img src="../images/no_content_length_1.jpg" width="50%" height="50%"><br><img src="../images/no_content_length_2.jpg" width="50%" height="50%"></p>
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>出现<code>Content-Length</code>缺少是因为服务器会对下发的资源做GZip操作，解决方法就是在请求头里面加入</p>
-<p><code>”Accept-Encoding”, “identity”</code>。</p>
-<p>在FileDownloader里面使用的OkHttpClient加入拦截器</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Request oldRequest = chain.request();</div><div class="line"></div><div class="line"><span class="comment">// 拼凑下载请求的header头</span></div><div class="line">Headers.Builder headBuilder = <span class="keyword">new</span> Headers.Builder();</div><div class="line">headBuilder.add(ACCEPT_ENCODING,IDENTITY);</div><div class="line"><span class="comment">// 构造新的request</span></div><div class="line">Request.Builder newBuilder = oldRequest.newBuilder();</div><div class="line">newBuilder.method(oldRequest.method(),oldRequest.body());</div><div class="line">Request newRequest = newBuilder.headers(headBuilder.build()).build();</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">  <span class="comment">// 执行新请求</span></div><div class="line">  response = chain.proceed(newRequest);</div><div class="line">&#125;<span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">  LogUtil.error(TAG,e.getMessage());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料:"></a>参考资料:</h3><ul>
-<li><a href="http://www.voidcn.com/article/p-njxxgoys-ot.html" target="_blank" rel="external">OKHttp与丢失掉的Content-Length</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/20/解决OkHttp下载时获取不到文件的大小/" data-id="cjc8f3gf90005y0ttvmgnqd0k" class="article-share-link">Delen</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-setContentView源码解析" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/15/setContentView源码解析/" class="article-date">
-  <time datetime="2017-09-15T03:34:20.000Z" itemprop="datePublished">2017-09-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/15/setContentView源码解析/">setContentView源码解析</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-两个疑问"><a href="#1-两个疑问" class="headerlink" title="1.两个疑问"></a>1.两个疑问</h2><ul>
-<li>requestWindowFeature方法为什么要在setContentView方法之前调用</li>
-<li>​为什么在我们的根布局前面前面还会有FrameLayout，而这个我们并没有写在布局里面<br><img src="http://img.blog.csdn.net/20150526104647053" width="80%" height="80%/"></li>
-</ul>
-<h2 id="2-Android6-0-API-23-Activity的setContentView方法"><a href="#2-Android6-0-API-23-Activity的setContentView方法" class="headerlink" title="2.Android6.0(API 23) Activity的setContentView方法"></a>2.Android6.0(API 23) Activity的setContentView方法</h2><h3 id="2-0-从getWindow说起"><a href="#2-0-从getWindow说起" class="headerlink" title="2-0 从getWindow说起"></a>2-0 从getWindow说起</h3><p>在我们自己的MainActivity点进去后到Activity类，发现有三个重载的方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setContentView</span><span class="params">(@LayoutRes <span class="keyword">int</span> layoutResID)</span> </span>&#123;</div><div class="line">    getWindow().setContentView(layoutResID);            </div><div class="line">    initWindowDecorActionBar();                         </div><div class="line">&#125;                                                       </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setContentView</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">    getWindow().setContentView(view);  </div><div class="line">    initWindowDecorActionBar();        </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setContentView</span><span class="params">(View view, ViewGroup.LayoutParams params)</span> </span>&#123;</div><div class="line">    getWindow().setContentView(view, params);                         </div><div class="line">    initWindowDecorActionBar();                                       </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>因为我们在项目中最常用到的是第一个，也就是传一个布局文件进去的这个重载方法，所以接下来就重点分析这个方法</p>
-<p>在Activity类里面是又去调用了<code>getWindow().setContentView(layoutResID)</code>，这个getWindow是什么东西呢，我们点进去发现是返回一个mWindow，我们再找到mWindow赋值的地方</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Window <span class="title">getWindow</span><span class="params">()</span> </span>&#123; </div><div class="line">    <span class="keyword">return</span> mWindow;         </div><div class="line">&#125;                           </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">attach</span><span class="params">(Context context, ActivityThread aThread,                        </span></span></div><div class="line"><span class="function"><span class="params">        Instrumentation instr, IBinder token, <span class="keyword">int</span> ident,                          </span></span></div><div class="line"><span class="function"><span class="params">        Application application, Intent intent, ActivityInfo info,                </span></span></div><div class="line"><span class="function"><span class="params">        CharSequence title, Activity parent, String id,                           </span></span></div><div class="line"><span class="function"><span class="params">        NonConfigurationInstances lastNonConfigurationInstances,                  </span></span></div><div class="line"><span class="function"><span class="params">        Configuration config, String referrer, IVoiceInteractor voiceInteractor)</span> </span>&#123;</div><div class="line">	attachBaseContext(context);            </div><div class="line">                                       </div><div class="line">	mFragments.attachHost(<span class="keyword">null</span> <span class="comment">/*parent*/</span>);</div><div class="line">    <span class="comment">// 这里初始化                                   </span></div><div class="line">	mWindow = <span class="keyword">new</span> PhoneWindow(<span class="keyword">this</span>);   </div><div class="line">  	mWindow.setCallback(<span class="keyword">this</span>);</div><div class="line">  	.....</div><div class="line">    .....</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>可以看到是在attach方法里面对mWindow进行实例化，也就是说我们的这个getWindow实际上也就是个PhoneWindow类</p>
-<p><strong>注意：</strong></p>
-<ul>
-<li><p>看完这一步可能有人有疑问，<code>getWindow().setContentView(layoutResID)</code>这个方法我直接点setContentView跳转进去看不就可以了，还要这么麻烦。那看一下直接点击去是长怎样的，代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">setContentView</span><span class="params">(@LayoutRes <span class="keyword">int</span> layoutResID)</span></span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">setContentView</span><span class="params">(View view)</span></span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">setContentView</span><span class="params">(View view, ViewGroup.LayoutParams params)</span></span>;</div></pre></td></tr></table></figure>
-<p>什么都没有实现，这是三个抽象方法，实际上，这是跳转到了Window这个抽象类的setContentView，我们无法知道是在哪个子类里具体实现了Activity调用的setContentView方法</p>
-</li>
-<li><p>在Android4.4的源码里，这里的mWindow类并不是这样直接初始化的，而是通过PolicyManager来makeNewWindow来创建的，这一个地方有做更改</p>
-</li>
-</ul>
-<h3 id="2-1-窗口Window类的一些关系"><a href="#2-1-窗口Window类的一些关系" class="headerlink" title="2-1 窗口Window类的一些关系"></a>2-1 窗口Window类的一些关系</h3><p>找到是PhoneWindow之后，我们再来看一下他们的关系</p>
-<p><img src="http://img.blog.csdn.net/20150525162737834" width="50%" height="50%"></p>
-<p>这里有几点说明一下：</p>
-<ul>
-<li>在Activity类声明了一个Window抽象类的成员变量mWindow，再在attach方法中把这个抽象类实例化成PhoneWindow类</li>
-<li>PhoneWindow类有个内部类DecorView，这个DecorView实际上是所有Activity的根View</li>
-<li>DecorView是继承FrameLayout的自定义View，用作装饰FrameLayout(Decor实际就是装饰的意思)</li>
-<li>在Android API 24以后，这个DecorView已经不再作为内部类</li>
-</ul>
-<h3 id="2-2-PhoneWindow类的setContentView方法"><a href="#2-2-PhoneWindow类的setContentView方法" class="headerlink" title="2-2 PhoneWindow类的setContentView方法"></a>2-2 PhoneWindow类的setContentView方法</h3><p>现在回到PhoneWindow类，来看这个类里的setContenView做了什么</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setContentView</span><span class="params">(<span class="keyword">int</span> layoutResID)</span> </span>&#123;</div><div class="line">        <span class="comment">// Note: FEATURE_CONTENT_TRANSITIONS may be set in the process of installing the window</span></div><div class="line">        <span class="comment">// decor, when theme attributes and the like are crystalized. Do not check the feature</span></div><div class="line">        <span class="comment">// before this happens.</span></div><div class="line">        <span class="keyword">if</span> (mContentParent == <span class="keyword">null</span>) &#123;</div><div class="line">            installDecor();</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!hasFeature(FEATURE_CONTENT_TRANSITIONS)) &#123;</div><div class="line">            mContentParent.removeAllViews();</div><div class="line">        &#125;</div><div class="line">		</div><div class="line">        <span class="keyword">if</span> (hasFeature(FEATURE_CONTENT_TRANSITIONS)) &#123;</div><div class="line">            <span class="keyword">final</span> Scene newScene = Scene.getSceneForLayout(mContentParent, layoutResID,</div><div class="line">                    getContext());</div><div class="line">            transitionTo(newScene);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            mLayoutInflater.inflate(layoutResID, mContentParent);</div><div class="line">        &#125;</div><div class="line">        mContentParent.requestApplyInsets();</div><div class="line">        <span class="keyword">final</span> Callback cb = getCallback();</div><div class="line">        <span class="keyword">if</span> (cb != <span class="keyword">null</span> &amp;&amp; !isDestroyed()) &#123;</div><div class="line">            cb.onContentChanged();</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>可以看到这里主要做了两件事情：</p>
-<ul>
-<li><p>当mContentParent为空时去调用installDecor方法</p>
-</li>
-<li><p>调用mLayoutInflater.inflate把我们传入的布局文件，附着到mContentParent到这个root布局上</p>
-<p>这两个地方也是setContentView最主要需要分析的地方</p>
-</li>
-</ul>
-<p>hasFeature(FEATURE_CONTENT_TRANSITIONS)相关的判断是在5.0以后加入的，在5.0以前并没有，这些判断主要是为了给页面UI提供变换(transition)和转场(Scene)动画效果，不是我们今天要分析的重点</p>
-<h3 id="2-3-PhoneWindow类的installDecor方法"><a href="#2-3-PhoneWindow类的installDecor方法" class="headerlink" title="2-3 PhoneWindow类的installDecor方法"></a>2-3 PhoneWindow类的installDecor方法</h3><p>接着我们来installDecor这个方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">installDecor</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (mDecor == <span class="keyword">null</span>) &#123;</div><div class="line">            mDecor = generateDecor();</div><div class="line">            mDecor.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);</div><div class="line">            mDecor.setIsRootNamespace(<span class="keyword">true</span>);</div><div class="line">            <span class="keyword">if</span> (!mInvalidatePanelMenuPosted &amp;&amp; mInvalidatePanelMenuFeatures != <span class="number">0</span>) &#123;</div><div class="line">                mDecor.postOnAnimation(mInvalidatePanelMenuRunnable);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (mContentParent == <span class="keyword">null</span>) &#123;</div><div class="line">            mContentParent = generateLayout(mDecor);</div><div class="line"></div><div class="line">            <span class="comment">// Set up decor part of UI to ignore fitsSystemWindows if appropriate.</span></div><div class="line">            mDecor.makeOptionalFitsSystemWindows();</div><div class="line"></div><div class="line">            <span class="keyword">final</span> DecorContentParent decorContentParent = </div><div class="line">              (DecorContentParent)mDecor.findViewById(R.id.decor_content_parent);</div><div class="line">            ....</div><div class="line">            ....</div><div class="line">            <span class="comment">// 在这个判断里面设置标题转场动画等属性</span></div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这个方法非常长，挑我们需要关注的地方，主要两个，一个是generateDecor方法，一个是generateLayout方法</p>
-<p>generateDecor方法内容，如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">protected</span> DecorView <span class="title">generateDecor</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> DecorView(getContext(), -<span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>可以知道这里是创建一个DecorView的实例</p>
-<p>回到installDecor方法继续看mContentParent是怎么赋值的，它是通过调用generateLayout的返回值</p>
-<p>generateLayout方法主要做的事情，如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">protected</span> ViewGroup <span class="title">generateLayout</span><span class="params">(DecorView decor)</span> </span>&#123;</div><div class="line">        <span class="comment">// Apply data from current theme.</span></div><div class="line">		<span class="comment">// 获取当前设置的样式文件</span></div><div class="line">        TypedArray a = getWindowStyle();</div><div class="line">		</div><div class="line">  		<span class="comment">// 根据获取的样式进行一堆属性设置</span></div><div class="line">  		....</div><div class="line">        ....</div><div class="line">        </div><div class="line">		<span class="comment">// Inflate the window decor.</span></div><div class="line"></div><div class="line">        <span class="keyword">int</span> layoutResource;</div><div class="line">		<span class="comment">// 我们在代码调用requestWindowFeature的时候会通过下面的getLocalFeatures得到</span></div><div class="line">        <span class="keyword">int</span> features = getLocalFeatures();</div><div class="line">        <span class="comment">// System.out.println("Features: 0x" + Integer.toHexString(features));</span></div><div class="line">        <span class="keyword">if</span> ((features &amp; (<span class="number">1</span> &lt;&lt; FEATURE_SWIPE_TO_DISMISS)) != <span class="number">0</span>) &#123;</div><div class="line">			<span class="comment">// 对ActionBar样式或者自定义标题的一些装饰</span></div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">// Embedded, so no decoration is needed.</span></div><div class="line">          	<span class="comment">// 如果不需要ActionBar等标题，则使用R.layout.screen_simple这个布局</span></div><div class="line">            layoutResource = R.layout.screen_simple;</div><div class="line">            <span class="comment">// System.out.println("Simple!");</span></div><div class="line">        &#125;</div><div class="line">        mDecor.startChanging();</div><div class="line">		<span class="comment">// 给layoutResource赋值后，把它转换为View</span></div><div class="line">        View in = mLayoutInflater.inflate(layoutResource, <span class="keyword">null</span>);</div><div class="line">  		<span class="comment">// 把上面得到的可能包括ActionBar，标题等在内的View给添加进去DecorView</span></div><div class="line">        decor.addView(in, <span class="keyword">new</span> ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT));</div><div class="line">        mContentRoot = (ViewGroup) in;</div><div class="line">		</div><div class="line">  		<span class="comment">// contentParent实际上就是需要赋值给mContentParent的变量</span></div><div class="line">		<span class="comment">// 可以看到他对应的是上面layoutResource里面id为content的布局</span></div><div class="line">        ViewGroup contentParent = (ViewGroup)findViewById(ID_ANDROID_CONTENT);</div><div class="line">        <span class="keyword">if</span> (contentParent == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Window couldn't find content container view"</span>);</div><div class="line">        &#125; </div><div class="line">  		</div><div class="line">  		<span class="comment">// 再设置一堆样式属性</span></div><div class="line">  		....</div><div class="line">        ....</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>基本上面的代码已经通过注释说明了</p>
-<p>可以知道这个generateLayout实质就是根据设置的风格来设置相应的根布局，比如如果上面设置了无标题就会调用<code>R.layout.screen_simple</code>这个布局文件。接着DecorView再把根布局添加进来，最后返回根据根布局里面id为content的FrameLayout</p>
-<p>我们来看下<code>R.layout.screen_simple</code>这个布局文件里面是写的什么：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:fitsSystemWindows</span>=<span class="string">"true"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ViewStub</span> <span class="attr">android:id</span>=<span class="string">"@+id/action_mode_bar_stub"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:inflatedId</span>=<span class="string">"@+id/action_mode_bar"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout</span>=<span class="string">"@layout/action_mode_bar"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:theme</span>=<span class="string">"?attr/actionBarTheme"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">FrameLayout</span></span></div><div class="line"><span class="tag">         <span class="attr">android:id</span>=<span class="string">"@android:id/content"</span></span></div><div class="line"><span class="tag">         <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">         <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">         <span class="attr">android:foregroundInsidePadding</span>=<span class="string">"false"</span></span></div><div class="line"><span class="tag">         <span class="attr">android:foregroundGravity</span>=<span class="string">"fill_horizontal|top"</span></span></div><div class="line"><span class="tag">         <span class="attr">android:foreground</span>=<span class="string">"?android:attr/windowContentOverlay"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>通过上面布局文件我们知道父容器是一个LinearLayout，接着是两个子控件ViewStub和FrameLayout，其中FrameLayout的id是“content”。结合上面generateLayout的代码，这个根布局的作用就很清晰了。</p>
-<p>另外这几个控件有没有很熟悉，再来看一下一开始的View树状图:</p>
-<p><img src="http://img.blog.csdn.net/20150526104647053" width="80%" height="80%/"></p>
-<p>分析到这里我们基本可以很好的回答开头提出的两个问题了：</p>
-<ul>
-<li><p>requestWindowFeature如果在setContentView之后再去调用的话，因为这时mContentParent已经赋值，也就不会执行installDecor方法，这时layoutresource也已经确定，相应地不可能再执行得到设置标题栏这些属性所在的方法。另外在requestWindowFeature这个方法里面，系统也有做了判断，如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">requestFeature</span><span class="params">(<span class="keyword">int</span> featureId)</span> </span>&#123;</div><div class="line">       <span class="keyword">if</span> (mContentParent != <span class="keyword">null</span>) &#123;</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> AndroidRuntimeException(<span class="string">"requestFeature() must be called before adding content"</span>);</div><div class="line">       &#125;</div><div class="line">  		...</div><div class="line">       ...</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<p>如果mContentParent不为空，直接抛出一个AndroidRuntimeException异常</p>
-</li>
-<li><p>在我们布局树里面出现的PhoneWindow$DecorView，这就是DecorView。接着出现的LinearLayout，ViewStub，FrameLayout就是在上面generateLayout方法里面的layoutresource，因为这个layoutresource是通过判断是设置了哪种属性之后被赋值的布局文件，所以这个也不会太确定，不过可以肯定的是，必须会有一个id为content，这个ViewGroup一般都是FrameLayout，用来作为我们开发时候的根布局</p>
-</li>
-</ul>
-<h3 id="2-4-Window类内部接口Callback的onContentChanged方法"><a href="#2-4-Window类内部接口Callback的onContentChanged方法" class="headerlink" title="2-4 Window类内部接口Callback的onContentChanged方法"></a>2-4 Window类内部接口Callback的onContentChanged方法</h3><p>最后再来看看PhoneWindow里setContentView最后剩下的一点代码，如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> Callback cb = getCallback();</div><div class="line"><span class="keyword">if</span> (cb != <span class="keyword">null</span> &amp;&amp; !isDestroyed()) &#123;</div><div class="line">	cb.onContentChanged();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这个Callback的onContentChanged究竟做了什么</p>
-<p>首先看看getCallback，这个方法是直接调用父类Window类的getCallback，它返回了mCallback。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> Callback <span class="title">getCallback</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> mCallback;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>mCallback又是在哪里被赋值的呢？可以看到只有一个地方对它进行了赋值，这个方法就是setCallBack方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCallback</span><span class="params">(Callback callback)</span> </span>&#123;</div><div class="line">        mCallback = callback;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>那么setCallBack又是在哪里被调用的呢？上面我们在分析窗口Window类的关系的地方，可以知道在Activity里面有声明Window类，它的成员变量是mWindow，也就是一开始分析的getWindow的返回值。</p>
-<p>事实上，就在mWindow赋值的地方，mWindow被实例化之后，紧接着立刻做了一件事，也就是调用setCallback，代码可以参见如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">attach</span><span class="params">(Context context, ActivityThread aThread,                        </span></span></div><div class="line"><span class="function"><span class="params">        Instrumentation instr, IBinder token, <span class="keyword">int</span> ident,                          </span></span></div><div class="line"><span class="function"><span class="params">        Application application, Intent intent, ActivityInfo info,                </span></span></div><div class="line"><span class="function"><span class="params">        CharSequence title, Activity parent, String id,                           </span></span></div><div class="line"><span class="function"><span class="params">        NonConfigurationInstances lastNonConfigurationInstances,                  </span></span></div><div class="line"><span class="function"><span class="params">        Configuration config, String referrer, IVoiceInteractor voiceInteractor)</span> </span>&#123;</div><div class="line">	attachBaseContext(context);            </div><div class="line">                                       </div><div class="line">	mFragments.attachHost(<span class="keyword">null</span> <span class="comment">/*parent*/</span>);</div><div class="line">    <span class="comment">// 这里初始化                                   </span></div><div class="line">	mWindow = <span class="keyword">new</span> PhoneWindow(<span class="keyword">this</span>);</div><div class="line">	<span class="comment">// 这里调用setCallback</span></div><div class="line">  	mWindow.setCallback(<span class="keyword">this</span>);</div><div class="line">  	.....</div><div class="line">    .....</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>到这里，我们也就明白了<code>cb.onContentChanged()</code>调用的onContentChanged实际就是Activity里面的onContentChanged。</p>
-<p>我们再来看看Activity里onContentChanged做了什么：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onContentChanged</span><span class="params">()</span> </span>&#123; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>咦，什么也没有。没错，Activity里面的实现是空的。那它用来干什么呢？既然父类是空实现，那么它肯定是用来给子类初始化各自不同的内容了，而这个方法里的内容，系统会帮我们去回调。</p>
-<p>举个例子：ListActivity这个方法重写了onContentChanged方法，代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onContentChanged</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">super</span>.onContentChanged();</div><div class="line">       View emptyView = findViewById(com.android.internal.R.id.empty);</div><div class="line">       mList = (ListView)findViewById(com.android.internal.R.id.list);</div><div class="line">       <span class="keyword">if</span> (mList == <span class="keyword">null</span>) &#123;</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(</div><div class="line">                   <span class="string">"Your content must have a ListView whose id attribute is "</span> +</div><div class="line">                   <span class="string">"'android.R.id.list'"</span>);</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">if</span> (emptyView != <span class="keyword">null</span>) &#123;</div><div class="line">           mList.setEmptyView(emptyView);</div><div class="line">       &#125;</div><div class="line">       mList.setOnItemClickListener(mOnClickListener);</div><div class="line">       <span class="keyword">if</span> (mFinishedStart) &#123;</div><div class="line">           setListAdapter(mAdapter);</div><div class="line">       &#125;</div><div class="line">       mHandler.post(mRequestFocus);</div><div class="line">       mFinishedStart = <span class="keyword">true</span>;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<p>上面的代码无非也就是一些初始化的操作，比如findViewById之类的。实际上在国外的一些开源框架和安卓系统里面Activity的子类，这些初始化操作都是放在了onContentChanged里去操作的</p>
-<h3 id="2-5-setContentView源码分析总结"><a href="#2-5-setContentView源码分析总结" class="headerlink" title="2-5 setContentView源码分析总结"></a>2-5 setContentView源码分析总结</h3><p>通过以上的一系列分析，我们知道了setContenView做的事情主要有以下这些：</p>
-<ul>
-<li>首先创建一个DecorView，作为所有窗口的根View</li>
-<li>接着根据feature或style等主题的属性，创建不同的layoutresource</li>
-<li>确定了layoutresource后，通过findviewById找到id为content的控件，作为ViewGroup后返回</li>
-<li>最后把我们开发中的布局都添加到上一步返回回来mContentParent的ViewGroup里</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/15/setContentView源码解析/" data-id="cjc8f3gf50002y0ttua0ud1ww" class="article-share-link">Delen</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-在Mac OS上编译ijkplayer，并加入MEPG-4解码支持" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/05/25/在Mac OS上编译ijkplayer，并加入MEPG-4解码支持/" class="article-date">
-  <time datetime="2017-05-25T14:27:29.000Z" itemprop="datePublished">2017-05-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/25/在Mac OS上编译ijkplayer，并加入MEPG-4解码支持/">在Mac OS上编译ijkplayer，并加入MPEG-4解码支持</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'tv.danmaku.ijk.media:ijkplayer-java:0.7.8.1'</span></div><div class="line">compile <span class="string">'tv.danmaku.ijk.media:ijkplayer-armv7a:0.7.8.1'</span></div></pre></td></tr></table></figure>
-<p>需求：项目中gradle里引入的ijkplayer默认可以支持播放avcodec编码的mp4格式的视频，但是不支持播放mp4格式MPEG-4编码的视频(现象为视频出现黑屏，可听到声音，说明音频能被解码)</p>
-<p>解决办法：通过修改配置，并重新编码出SO，以达到支持播放MPEG-4编码的视频</p>
-<p>编译环境：</p>
-<ul>
-<li>macOS 10.12.4 </li>
-<li>Android</li>
-<li>NDK 13.1</li>
-<li>Android Studio 2.2</li>
-<li>Gradle 2.14.1</li>
-</ul>
-<h2 id="1-下载Git上的源码"><a href="#1-下载Git上的源码" class="headerlink" title="1.下载Git上的源码"></a>1.下载Git上的源码</h2><p>通过<code>git clone https://github.com/Bilibili/ijkplayer.git ijkplayer-android</code>clone源码到本地，当然也可用sourcetree等工具拉取下来</p>
-<p><img src="../images/build_ijkplayer_1.png" width="20%" height="20%" align="middle"></p>
-<p>拉取下来后这就是里面的目录文件结构</p>
-<h2 id="2-配置"><a href="#2-配置" class="headerlink" title="2.配置"></a>2.配置</h2><p>1.配置NDK：</p>
-<p>先进入自己的用户下面，然后再更改配置文件，一般是<code>.bash_profile</code>或者<code>.profile</code>。这里以<code>.bash_profile</code>为例子说明</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~</div><div class="line">vi .bash_profile</div></pre></td></tr></table></figure>
-<p>进入到vi编译模式后，再把<code>export ANDROID_NDK=&lt;your ndk path&gt;</code>此行写入。(vi用法请自行查阅)</p>
-<p>2.配置FFMPEG的需要支持的视频格式等</p>
-<p>在clone下来项目里的config目录里提供了三个配置文件。这里先以配置文件<code>module-default.sh</code>作为例子编译一次</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd config</div><div class="line">rm module.sh	//如果已经存在，必须先移除，否则不能生成新的</div><div class="line">ln -s module-default.sh module.sh	//生成一个module.sh的连接指向module-default.sh</div></pre></td></tr></table></figure>
-<p>3.创建分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -B latest k0.8.0</div></pre></td></tr></table></figure>
-<p>创建并切换到一个最新的分支<code>latest</code>来作为我们自己编译的分支，不直接在master上修改。我这里是在0.8.0上的基础上重新编译的，版本号可在<code>ijkplayer-android</code>目录下的<code>version.sh</code>找到</p>
-<h2 id="3-下载并编译FFMPEG"><a href="#3-下载并编译FFMPEG" class="headerlink" title="3.下载并编译FFMPEG"></a>3.下载并编译FFMPEG</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./init-android.sh</div></pre></td></tr></table></figure>
-<p>在<code>ijkplayer-android</code>目录下执行此命令，根据命令行的内容，推测是在拉取FFMPEG各个CPU平台下的源码。下图是已经拉取完，执行上面命令后的结果(因为已经科学上网，此过程用了几分钟就可拉取下来)</p>
-<p><img src="../images/build_ijkplayer_2.png" width="50%" height="50%" align="middle"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd android/contrib</div><div class="line">./compile-ffmpeg.sh clean</div><div class="line">./compile-ffmpeg.sh all</div></pre></td></tr></table></figure>
-<p><code>./compile-ffmpeg.sh clean</code>此命令用来清除上一次编译后生成的文件，执行结果如下，因为清除的文件较多，这里只截取了一部分</p>
-<p><img src="../images/build_ijkplayer_3.png" width="50%" height="50%" align="middle"></p>
-<p><code>./compile-ffmpeg.sh all</code>用来编译生成FFMPEG所有平台的库，如果需要指定只编译某一个平台，可把<code>all</code>改成<code>armv7a</code>，<code>x86</code>等平台。生成的文件都会在<code>android/contrib</code>下面的build目录里，这里依然只截取一部分图，由于生成的文件较多，这一步会稍微比较久</p>
-<p><img src="../images/build_ijkplayer_4.png" width="50%" height="50%" align="middle"></p>
-<p>编译完了之后，build目录下生成的文件</p>
-<p><img src="../images/build_ijkplayer_5.png" width="50%" height="50%" align="middle"></p>
-<h2 id="4-编译ijkplayer"><a href="#4-编译ijkplayer" class="headerlink" title="4.编译ijkplayer"></a>4.编译ijkplayer</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ..</div><div class="line">./compile-ijk.sh all</div></pre></td></tr></table></figure>
-<p>切换回上一级目录，即回到<code>ijkplayer-android/android</code>，然后执行编译。这里的<code>all</code>同上面，也可改成自己想要编译的平台。</p>
-<p><img src="../images/build_ijkplayer_6.png" width="50%" height="50%" align="middle"></p>
-<p>执行完了之后，在Demo里面的各个module下的libs就会生成对应的so了，如armv7a的module下的路径<code>ijkplayer-android/android/ijkplayer/ijkplayer-armv7a/src/main/libs</code>。</p>
-<p>想要查看Demo，只需把<code>ijkplayer-android/android/ijkplayer</code>导入进去Android Studio里面</p>
-<h2 id="5-定制自己需要的解码器"><a href="#5-定制自己需要的解码器" class="headerlink" title="5.定制自己需要的解码器"></a>5.定制自己需要的解码器</h2><p>上面编译的是<code>module-default.sh</code>配置的SO，<code>libijkffmepg.so</code>大约有7MB左右，实际上对于大多数手机端上的视频来说，我们并不需要用到那么多解码器，这无疑增大了包的体积。</p>
-<p>再回到我们一开始的需求，我们只需要在原来compile进来的    so基础上增加对MEPG-4视频编码的支持就行了。</p>
-<p>打开config目录下的<code>module-lite.sh</code>，在<code>#./configure --list-decoders</code>末尾加入下面这行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export COMMON_FF_CFG_FLAGS=&quot;$COMMON_FF_CFG_FLAGS --enable-decoder=mpeg4&quot;</div></pre></td></tr></table></figure>
-<p><img src="../images/build_ijkplayer_7.png" width="50%" height="50%" align="middle"></p>
-<p>然后在上面第二步<code>ln -s module-default.sh module.sh</code>创建module.sh时，修改成下面，其他不变</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ln -s module-lite.sh module.sh</div></pre></td></tr></table></figure>
-<p>最后生成的<code>libijkffmepg.so</code>大概2MB，比compile导入的so大概多了300~400KB。</p>
-<p>如果想要增加更多的格式或是控制so的体积，只保留自己需要的解码，则可在配置里disable那个解码器</p>
-<p>一些支持的文件格式或者视频流可以参考FFmpeg里面的avcodec.h头文件：</p>
-<p><img src="../images/build_ijkplayer_8.png" width="50%" height="50%" align="middle"></p>
-<p>把自己编译好的项目放入项目里后，遇到如下问题：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java.lang.UnsatisfiedLinkError: JNI_ERR returned from JNI_OnLoad in &quot;/data/app/com.p1.mobile.putong-1/lib/arm/libijksdl.so&quot;</div></pre></td></tr></table></figure>
-<p>1.保证<code>ijkplayer-java</code>这个库跟so的库版本一致</p>
-<p>2.在<code>proguard-rules.pro</code>加入<code>-keep class  tv.danmaku.** {*;}</code>不被混淆</p>
-<h2 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h2><p>1.<a href="https://github.com/Bilibili/ijkplayer" target="_blank" rel="external">https://github.com/Bilibili/ijkplayer</a></p>
-<p>2.<a href="http://blog.csdn.net/zy987654zy/article/details/53126457" target="_blank" rel="external">ijkplayer 编译so库过程</a></p>
-<p>3.<a href="http://www.jianshu.com/p/593afe10155b" target="_blank" rel="external">iOS使用IJKPlayer播放编码mpeg视频无画面</a></p>
-<p>4.<a href="http://www.jianshu.com/p/220b00d00deb" target="_blank" rel="external">IJKPlayer问题集锦之不定时更新</a></p>
-<p>5.<a href="http://www.jianshu.com/p/3f78da1c6a61" target="_blank" rel="external">ijkplayer开启rtsp与MJPEG的支持</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/25/在Mac OS上编译ijkplayer，并加入MEPG-4解码支持/" data-id="cjc8f3gf80004y0tt1cn0anf7" class="article-share-link">Delen</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ijkplayer-FFmpeg-MPEG-4/">ijkplayer FFmpeg MPEG-4</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Labels</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ijkplayer-FFmpeg-MPEG-4/">ijkplayer FFmpeg MPEG-4</a></li></ul>
-    </div>
   </div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/ijkplayer-FFmpeg-MPEG-4/" style="font-size: 10px;">ijkplayer FFmpeg MPEG-4</a>
-    </div>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
   </div>
+</div>
+
+<nav class="site-nav">
+  
 
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li></ul>
-    </div>
-  </div>
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
 
+      
+    </ul>
+  
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2017/09/28/在Mac下使用NDK编译FFMpeg3.3.4并应用到Android项目/">在Mac下使用NDK编译FFmpeg3.3.4</a>
-          </li>
-        
-          <li>
-            <a href="/2017/09/20/解决OkHttp下载时获取不到文件的大小/">解决使用okhttp作为网络请求时获取不到下载文件的大小</a>
-          </li>
-        
-          <li>
-            <a href="/2017/09/15/setContentView源码解析/">setContentView源码解析</a>
-          </li>
-        
-          <li>
-            <a href="/2017/05/25/在Mac OS上编译ijkplayer，并加入MEPG-4解码支持/">在Mac OS上编译ijkplayer，并加入MPEG-4解码支持</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2018 Lyuanhui<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/28/在Mac下使用NDK编译FFMpeg3.3.4并应用到Android项目/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lyuanhui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lyuanhui's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/28/在Mac下使用NDK编译FFMpeg3.3.4并应用到Android项目/" itemprop="url">在Mac下使用NDK编译FFmpeg3.3.4</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-28T15:32:31+08:00">
+                2017-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/09/28/在Mac下使用NDK编译FFMpeg3.3.4并应用到Android项目/" class="leancloud_visitors" data-flag-title="在Mac下使用NDK编译FFmpeg3.3.4">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          概述FFmpeg是一套非常强大的音视频处理工具，许多开发过多媒体的朋友都绕不开它，围绕着FFmpeg可以进行诸如音视频解码，裁剪，拼接，音视频合并，以及支持多种流媒体的协议等等
+今天就用目前最新的ffmpeg3.3.4源码，使用NDK进行交叉编译，生成Android项目上可以使用的库，然后在APP上
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/28/在Mac下使用NDK编译FFMpeg3.3.4并应用到Android项目/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/20/解决OkHttp下载时获取不到文件的大小/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lyuanhui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lyuanhui's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/20/解决OkHttp下载时获取不到文件的大小/" itemprop="url">解决使用okhttp作为网络请求时获取不到下载文件的大小</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T16:36:32+08:00">
+                2017-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/09/20/解决OkHttp下载时获取不到文件的大小/" class="leancloud_visitors" data-flag-title="解决使用okhttp作为网络请求时获取不到下载文件的大小">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          背景今天在项目中遇到下载某些文件一点击进度就显示100%(文件很大，网速也不快的情况下也是一点击就显示完成)，下载用的是https://github.com/lingochamp/FileDownloader，这个下载器里面下载请求使用的OkHttpClient
+经过抓包对比发现，下载的文件，进度显
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/20/解决OkHttp下载时获取不到文件的大小/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
 
 
-<script src="/js/script.js"></script>
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/15/setContentView源码解析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lyuanhui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lyuanhui's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/15/setContentView源码解析/" itemprop="url">setContentView源码解析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-15T11:34:20+08:00">
+                2017-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/09/15/setContentView源码解析/" class="leancloud_visitors" data-flag-title="setContentView源码解析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          1.两个疑问
+requestWindowFeature方法为什么要在setContentView方法之前调用
+​为什么在我们的根布局前面前面还会有FrameLayout，而这个我们并没有写在布局里面
+
+2.Android6.0(API 23) Activity的setContentView方法2-0
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/15/setContentView源码解析/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/25/在Mac OS上编译ijkplayer，并加入MEPG-4解码支持/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lyuanhui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lyuanhui's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/25/在Mac OS上编译ijkplayer，并加入MEPG-4解码支持/" itemprop="url">在Mac OS上编译ijkplayer，并加入MPEG-4解码支持</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-25T22:27:29+08:00">
+                2017-05-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/05/25/在Mac OS上编译ijkplayer，并加入MEPG-4解码支持/" class="leancloud_visitors" data-flag-title="在Mac OS上编译ijkplayer，并加入MPEG-4解码支持">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          12compile 'tv.danmaku.ijk.media:ijkplayer-java:0.7.8.1'compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.7.8.1'
+需求：项目中gradle里引入的ijkplayer默认可以支持播放avcode
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/25/在Mac OS上编译ijkplayer，并加入MEPG-4解码支持/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <p class="site-author-name" itemprop="name">Lyuanhui</p>
+            <p class="site-description motion-element" itemprop="description">记录Android开发的点滴</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lyuanhui</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
 
   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("hypBymDV4ftm9MC2hgnaPKSA-gzGzoHsz", "Ftl3mbC5GjRTjSSAPfz9rQoe");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
