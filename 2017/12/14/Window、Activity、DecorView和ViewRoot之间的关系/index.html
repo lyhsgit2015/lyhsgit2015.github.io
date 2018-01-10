@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Activity、DecorView、Window和ViewRoot之间的关系职能简介 Activity Activity不负责视图的控制，它只是负责控制生命周期和事件的管理。视图的控制地方是在Window类中，具体在Activity里是Window的子类PhoneWindow，它负责View树的顶层View—DecorView的创建以及主题的管理 Activity像一个控制器，负责视图的添加与管">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lyuanhui&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/2017/12/14/Window、Activity、DecorView和ViewRoot之间的关系/index.html">
+<meta property="og:site_name" content="Lyuanhui&#39;s Blog">
+<meta property="og:description" content="Activity、DecorView、Window和ViewRoot之间的关系职能简介 Activity Activity不负责视图的控制，它只是负责控制生命周期和事件的管理。视图的控制地方是在Window类中，具体在Activity里是Window的子类PhoneWindow，它负责View树的顶层View—DecorView的创建以及主题的管理 Activity像一个控制器，负责视图的添加与管">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-15T02:32:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lyuanhui&#39;s Blog">
+<meta name="twitter:description" content="Activity、DecorView、Window和ViewRoot之间的关系职能简介 Activity Activity不负责视图的控制，它只是负责控制生命周期和事件的管理。视图的控制地方是在Window类中，具体在Activity里是Window的子类PhoneWindow，它负责View树的顶层View—DecorView的创建以及主题的管理 Activity像一个控制器，负责视图的添加与管">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/14/Window、Activity、DecorView和ViewRoot之间的关系/"/>
+
+
+
+
+
+  <title> | Lyuanhui's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lyuanhui's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">生活不止眼前的编码</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/14/Window、Activity、DecorView和ViewRoot之间的关系/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lyuanhui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lyuanhui's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T09:30:15+08:00">
+                2017-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/14/Window、Activity、DecorView和ViewRoot之间的关系/" class="leancloud_visitors" data-flag-title="">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Activity、DecorView、Window和ViewRoot之间的关系"><a href="#Activity、DecorView、Window和ViewRoot之间的关系" class="headerlink" title="Activity、DecorView、Window和ViewRoot之间的关系"></a>Activity、DecorView、Window和ViewRoot之间的关系</h1><h2 id="职能简介"><a href="#职能简介" class="headerlink" title="职能简介"></a>职能简介</h2><ol>
+<li><p>Activity</p>
+<p>Activity不负责视图的控制，它只是负责控制生命周期和事件的管理。视图的控制地方是在Window类中，具体在Activity里是Window的子类PhoneWindow，它负责View树的顶层View—DecorView的创建以及主题的管理</p>
+<p>Activity像一个控制器，负责视图的添加与管理，以及方法的回调，来实现View和Window之间的交互</p>
+</li>
+<li><p>DecorView</p>
+<p>DecorView是所有视图的根布局，它是一个自定义的ViewGroup，继承FrameLayout，此前的SDK版本中作为PhoneWindow的内部类存在，6.0之后它与PhoneWindow同在一个包<code>com.android.internal.policy</code>下</p>
+<p>DecorView根据不同的主题创建不同的布局文件，我们平常使用里最多的用到是以下这个<code>R.layout.screen_simple</code>布局(来自SDK 26)</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:fitsSystemWindows</span>=<span class="string">"true"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ViewStub</span> <span class="attr">android:id</span>=<span class="string">"@+id/action_mode_bar_stub"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:inflatedId</span>=<span class="string">"@+id/action_mode_bar"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout</span>=<span class="string">"@layout/action_mode_bar"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:theme</span>=<span class="string">"?attr/actionBarTheme"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">FrameLayout</span></span></div><div class="line"><span class="tag">         <span class="attr">android:id</span>=<span class="string">"@android:id/content"</span></span></div><div class="line"><span class="tag">         <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">         <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">         <span class="attr">android:foregroundInsidePadding</span>=<span class="string">"false"</span></span></div><div class="line"><span class="tag">         <span class="attr">android:foregroundGravity</span>=<span class="string">"fill_horizontal|top"</span></span></div><div class="line"><span class="tag">         <span class="attr">android:foreground</span>=<span class="string">"?android:attr/windowContentOverlay"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>即最外层是LinearLayout，底下一个占位的Viewstub用来显示actionBar</p>
+<p>接着是一个FrameLayout，这是我们Activity里setContenview进去的内容的根布局</p>
+</li>
+<li><p>Window</p>
+<p>Window是一个抽象类，Activity里持有的是子类PhoneWindow，Window通过WindowManager将DecorView加载到Window中，并将DecorView交给ViewRoot，来进行视图的绘制和交互(如事件的分发)</p>
+</li>
+<li><p>ViewRoot</p>
+<p>ViewRoot负责所有View的绘制和事件分发传递</p>
+<p>对应的<code>ViewRootImpl</code>类，是连接DecorView、WindowManagerService的纽带</p>
+<p>View的三大流程，绘制(draw)、测量(measure)、布局(layout)均通过ViewRoot完成</p>
+<p>ViewRootImpl不属于View树内，不过它实现了<code>ViewParent</code>接口，同时实现此接口的有ViewGroup，所以名义上可以作为View的父视图</p>
+<p>ViewRootImpl的内部类<code>ViewRootHandler</code>继承了Handler，所有从硬件开始接受过来的键盘事件、触摸事件以及自身的刷新事件都是通过这个Handler类进行分发</p>
+</li>
+</ol>
+<h2 id="DecorView的创建"><a href="#DecorView的创建" class="headerlink" title="DecorView的创建"></a>DecorView的创建</h2><p>DecorView具体创建的方式在另一篇setCotentView的源码分析里已经介绍过，这里不再重复赘述</p>
+<h2 id="DecorView的显示"><a href="#DecorView的显示" class="headerlink" title="DecorView的显示"></a>DecorView的显示</h2><p>DecorView创建完了之后，并不会立刻就显示出来，这时候经过了很多处理</p>
+<p>启动Activity是从<code>handleLaunchAcitivy</code>开始的，此方法是启动Activity的开始，它是在Handler中处理消息的时候调用的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">ApplicationThread</span> <span class="keyword">extends</span> <span class="title">IApplicationThread</span>.<span class="title">Stub</span> </span>&#123;</div><div class="line"> <span class="meta">@Override</span> </div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">scheduleLaunchActivity</span><span class="params">(.....)</span></span>&#123;</div><div class="line">	<span class="comment">//   .....省略代码.....</span></div><div class="line">   <span class="comment">// 发送消息给ActivityThread的内部类Handler</span></div><div class="line">   sendMessage(H.LAUNCH_ACTIVITY, r);</div><div class="line"> &#125;</div><div class="line">     </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">H</span> <span class="keyword">extends</span> <span class="title">Handler</span> </span>&#123;</div><div class="line">  <span class="comment">//   .....省略代码.....</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">            <span class="keyword">if</span> (DEBUG_MESSAGES) Slog.v(TAG, <span class="string">"&gt;&gt;&gt; handling: "</span> + codeToString(msg.what));</div><div class="line">            <span class="keyword">switch</span> (msg.what) &#123;</div><div class="line">                <span class="comment">// 接收ApplicationThread的方法scheduleLaunchActivity发出的Handler消息</span></div><div class="line">                <span class="keyword">case</span> LAUNCH_ACTIVITY: &#123;</div><div class="line">                    Trace.traceBegin(Trace.TRACE_TAG_ACTIVITY_MANAGER, <span class="string">"activityStart"</span>);</div><div class="line">                    <span class="keyword">final</span> ActivityClientRecord r = (ActivityClientRecord) msg.obj;</div><div class="line">                    r.packageInfo = getPackageInfoNoCheck(</div><div class="line">                            r.activityInfo.applicationInfo, r.compatInfo);</div><div class="line">                  	<span class="comment">// 调用启动Activity</span></div><div class="line">                    handleLaunchActivity(r, <span class="keyword">null</span>, <span class="string">"LAUNCH_ACTIVITY"</span>);</div><div class="line">                    Trace.traceEnd(Trace.TRACE_TAG_ACTIVITY_MANAGER);</div><div class="line">                &#125; <span class="keyword">break</span>;</div><div class="line">                <span class="comment">//   .....省略代码.....</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>来到<code>H</code>这个Handler处理消息的方法中调用的<code>handleLaunchActivity</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">handleLaunchActivity</span><span class="params">(ActivityClientRecord r, Intent customIntent, String reason)</span> </span>&#123;</div><div class="line">   <span class="comment">//   .....省略代码.....</span></div><div class="line">  </div><div class="line">  <span class="comment">// 从performLaunchActivity返回一个Activity实例</span></div><div class="line">  Activity a = performLaunchActivity(r, customIntent);</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (a != <span class="keyword">null</span>) &#123;</div><div class="line">    r.createdConfig = <span class="keyword">new</span> Configuration(mConfiguration);</div><div class="line">    reportSizeConfigurations(r);</div><div class="line">    Bundle oldState = r.state;</div><div class="line">    <span class="comment">// handleResumeActivity实际调用了onRsume</span></div><div class="line">    handleResumeActivity(r.token, <span class="keyword">false</span>, r.isForward,</div><div class="line">                         !r.activity.mFinished &amp;&amp; !r.startsNotResumed, r.lastProcessedSeq, reason);</div><div class="line"></div><div class="line">  <span class="comment">//   .....省略代码.....</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>来看看<code>performLaunchActivity</code>这个方法是做了什么之后返回Activity的，又是个很长的方法，我们截取关键部分分析</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> Activity <span class="title">performLaunchActivity</span><span class="params">(ActivityClientRecord r, Intent customIntent)</span> </span>&#123;</div><div class="line">   <span class="comment">//   .....省略代码.....</span></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            java.lang.ClassLoader cl = appContext.getClassLoader();</div><div class="line">          	<span class="comment">// 这里调用Instrumentation的newActivity方法得到Activity实例</span></div><div class="line">          	<span class="comment">// 这个Activity实际上是用的classLoader.loadClass(className).newInstance()得到的</span></div><div class="line">            activity = mInstrumentation.newActivity(</div><div class="line">                    cl, component.getClassName(), r.intent);</div><div class="line">   <span class="comment">//   .....省略代码.....</span></div><div class="line">        &#125;</div><div class="line">  </div><div class="line">  <span class="comment">// 这里调用Activity的attach方法</span></div><div class="line">  <span class="comment">// attach里面是大量的初始化操作，包括Window的实例化</span></div><div class="line">  activity.attach(appContext, <span class="keyword">this</span>, getInstrumentation(), r.token,</div><div class="line">                        r.ident, app, r.intent, r.activityInfo, title, r.parent,</div><div class="line">                        r.embeddedID, r.lastNonConfigurationInstances, config,</div><div class="line">                        r.referrer, r.voiceInteractor, window, r.configCallback);</div><div class="line">  </div><div class="line">  <span class="comment">//   .....省略代码.....</span></div><div class="line">  </div><div class="line">  <span class="comment">// 通过Instrumentation调用Activity的onCreate方法</span></div><div class="line">  <span class="keyword">if</span> (r.isPersistable()) &#123;</div><div class="line">    mInstrumentation.callActivityOnCreate(activity, r.state,r.persistentState);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    mInstrumentation.callActivityOnCreate(activity, r.state);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 来到Instrumentation类</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Instrumentation</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">callActivityOnCreate</span><span class="params">(Activity activity, Bundle icicle)</span> </span>&#123;</div><div class="line">        prePerformCreate(activity);</div><div class="line">    	<span class="comment">// 调用Activity的performCreate</span></div><div class="line">        activity.performCreate(icicle);</div><div class="line">        postPerformCreate(activity);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Activity的performCreate方法</span></div><div class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">performCreate</span><span class="params">(Bundle icicle)</span> </span>&#123;</div><div class="line">  restoreHasCurrentPermissionRequest(icicle);</div><div class="line">  <span class="comment">// 调用onCreate方法，里面再调用PhoneWindow的setContentView方法</span></div><div class="line">  onCreate(icicle);</div><div class="line">  mActivityTransitionState.readState(icicle);</div><div class="line">  performCreateCommon();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在这个方法里面，我们可以清楚的知道，Activity被实例化之后调用attach方法进行各类初始化，紧接着调用Activity的onCreate的方法，在这之前我们知道onCreate方法就是调用PhoneWindow去初始化DecorView</p>
+<p>了解完<code>performLaunchActivity</code>，我们继续看回<code>handleLaunchActivity</code>里的另一个重要的方法<code>handleResumeActivity</code>，DecorView最终显示的秘密就藏在里面，这个方法里ViewRoot也将隆重登场</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">handleResumeActivity</span><span class="params">(IBinder token,<span class="keyword">boolean</span> clearHide, <span class="keyword">boolean</span> isForward, <span class="keyword">boolean</span> reallyResume, <span class="keyword">int</span> seq, String reason)</span> </span>&#123;</div><div class="line">  ActivityClientRecord r = mActivities.get(token);</div><div class="line">  <span class="comment">//   .....省略代码.....</span></div><div class="line">  </div><div class="line">  <span class="comment">// 这个方法里面最终会去调用Activity的onResume</span></div><div class="line">  r = performResumeActivity(token, clearHide, reason);</div><div class="line">  </div><div class="line">  <span class="comment">//   .....省略代码.....</span></div><div class="line">  <span class="keyword">if</span> (r.window == <span class="keyword">null</span> &amp;&amp; !a.mFinished &amp;&amp; willBeVisible) &#123;</div><div class="line">                r.window = r.activity.getWindow();</div><div class="line">                View decor = r.window.getDecorView();</div><div class="line">    			<span class="comment">// 把DecorView设置成不可见</span></div><div class="line">                decor.setVisibility(View.INVISIBLE);</div><div class="line">    			<span class="comment">// 获取WindowManger，</span></div><div class="line">    			<span class="comment">// ViewManger是WindowManger的 父接口</span></div><div class="line">    			<span class="comment">// 这里实际上拿到的是WindowManagerImpl</span></div><div class="line">                ViewManager wm = a.getWindowManager();</div><div class="line">                </div><div class="line">    			<span class="comment">// .....</span></div><div class="line">                <span class="keyword">if</span> (r.mPreserveWindow) &#123;</div><div class="line">                    a.mWindowAdded = <span class="keyword">true</span>;</div><div class="line">                    r.mPreserveWindow = <span class="keyword">false</span>;</div><div class="line">                  	<span class="comment">// 获取ViewRootImpl</span></div><div class="line">                    ViewRootImpl impl = decor.getViewRootImpl();</div><div class="line">                    <span class="keyword">if</span> (impl != <span class="keyword">null</span>) &#123;</div><div class="line">                        impl.notifyChildRebuilt();</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (a.mVisibleFromClient) &#123;</div><div class="line">                    <span class="keyword">if</span> (!a.mWindowAdded) &#123;</div><div class="line">                        a.mWindowAdded = <span class="keyword">true</span>;</div><div class="line">                      	<span class="comment">// 把DecorView放入WindowManager</span></div><div class="line">                        wm.addView(decor, l);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="comment">//   .....省略代码.....</span></div><div class="line">   <span class="keyword">if</span> (r.activity.mVisibleFromClient) &#123;</div><div class="line">     <span class="comment">// 设置可见</span></div><div class="line">     r.activity.makeVisible();</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Activity类</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">makeVisible</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span> (!mWindowAdded) &#123;</div><div class="line">    ViewManager wm = getWindowManager();</div><div class="line">    wm.addView(mDecor, getWindow().getAttributes());</div><div class="line">    mWindowAdded = <span class="keyword">true</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// 把DecorView设置成可见</span></div><div class="line">  mDecor.setVisibility(View.VISIBLE);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Activity里的<code>getWindowManager()</code>返回的是PhoneWindow的getWindowManager()，所以想要知道<code>addView</code>的具体实现得先知道ViewManager的实现类是哪个，PhoneWindow里面并没有这个方法，继续找到父类WindowManager，找到了是在<code>setWindowManager</code>里面赋值的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setWindowManager</span><span class="params">(WindowManager wm, IBinder appToken, String appName,<span class="keyword">boolean</span> hardwareAccelerated)</span> </span>&#123;</div><div class="line">  <span class="comment">// 这里赋值，可以看到被强转成了WindowManagerImpl</span></div><div class="line">  mWindowManager = ((WindowManagerImpl)wm).createLocalWindowManager(<span class="keyword">this</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>来到WindowManagerImpl的addView方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addView</span><span class="params">(@NonNull View view, @NonNull ViewGroup.LayoutParams params)</span> </span>&#123;</div><div class="line">  applyDefaultToken(params);</div><div class="line">  mGlobal.addView(view, params, mContext.getDisplay(), mParentWindow);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>调用了<code>WindowManagerGlobal</code>的addView方法，继续去到WindowManagerGlobal</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addView</span><span class="params">(View view, ViewGroup.LayoutParams params,Display display, Window parentWindow)</span> </span>&#123;</div><div class="line">  <span class="comment">// 省略代码...</span></div><div class="line">  </div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    <span class="comment">// 最终在调用ViewRoot的setView方法</span></div><div class="line">    root.setView(view, wparams, panelParentView);</div><div class="line">  &#125; <span class="keyword">catch</span> (RuntimeException e) &#123;</div><div class="line">    <span class="comment">// BadTokenException or InvalidDisplayException, clean up.</span></div><div class="line">    <span class="keyword">if</span> (index &gt;= <span class="number">0</span>) &#123;</div><div class="line">      removeViewLocked(index, <span class="keyword">true</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">throw</span> e;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>来到ViewRootImpl的setView方法，这个方法比较复杂我们主要关注<code>requestLayout</code>这个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setView</span><span class="params">(View view, WindowManager.LayoutParams attrs, View panelParentView)</span> </span>&#123;</div><div class="line">   <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</div><div class="line">     <span class="keyword">if</span> (mView == <span class="keyword">null</span>) &#123;</div><div class="line">       mView = view;</div><div class="line">       </div><div class="line">       <span class="comment">// Schedule the first layout -before- adding to the window</span></div><div class="line">       <span class="comment">// manager, to make sure we do the relayout before receiving</span></div><div class="line">       <span class="comment">// any other events from the system.</span></div><div class="line">       requestLayout();</div><div class="line">     &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>继续requestLayout方法，主要是检查是否在主线程以及调用<code>scheduleTraversals</code>方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">requestLayout</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span> (!mHandlingLayoutInLayoutRequest) &#123;</div><div class="line">    checkThread();</div><div class="line">    mLayoutRequested = <span class="keyword">true</span>;</div><div class="line">    scheduleTraversals();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>scheduleTraversals方法把线程放进mChoreographer执行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">scheduleTraversals</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span> (!mTraversalScheduled) &#123;</div><div class="line">    mTraversalScheduled = <span class="keyword">true</span>;</div><div class="line">    mTraversalBarrier = mHandler.getLooper().getQueue().postSyncBarrier();</div><div class="line">    mChoreographer.postCallback(</div><div class="line">      Choreographer.CALLBACK_TRAVERSAL, mTraversalRunnable, <span class="keyword">null</span>);</div><div class="line">    <span class="keyword">if</span> (!mUnbufferedInputDispatch) &#123;</div><div class="line">      scheduleConsumeBatchedInput();</div><div class="line">    &#125;</div><div class="line">    notifyRendererOfFramePending();</div><div class="line">    pokeDrawLockIfNeeded();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>来看一下mTraversalRunnable线程执行了什么</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">TraversalRunnable</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">    doTraversal();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>doTraversal主要调用了<code>performTraversals</code>方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">doTraversal</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span> (mTraversalScheduled) &#123;</div><div class="line">    mTraversalScheduled = <span class="keyword">false</span>;</div><div class="line">    mHandler.getLooper().getQueue().removeSyncBarrier(mTraversalBarrier);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (mProfile) &#123;</div><div class="line">      Debug.startMethodTracing(<span class="string">"ViewAncestor"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    performTraversals();</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (mProfile) &#123;</div><div class="line">      Debug.stopMethodTracing();</div><div class="line">      mProfile = <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>performTraversals这个方法很复杂，它主要在里面调用了<code>performMeasure</code>、<code>performLayout</code>、<code>performDraw</code>，它们的作用分别是计算视图的大小，确定视图布局的位置、确定是否重新绘制，也就是View的绘制流程</p>
+<p>最后再回到setView方法，可以看到有一个<code>view.assignParent(this)</code>，即注册父视图为自己，这样DecorView有了父节点，也就是Viewroot，有父节点之后，就能进行measure、layout、draw操作了</p>
+<p>另外ViewrootImpl也参与事件的分发，当用户触摸屏幕时，硬件传递捕获之后交给ViewRoot，ViewRoot再分发给DecorView，DecorView交由PhoneWindow，PhoneWindow再交给Activity处理，Activity之后就按照一般的事件分发流程开始进行事件的分发</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过上面的分析，可以知道整个视图的创建是怎样完成的，流程如下</p>
+<ol>
+<li>当启动一个Activity之后，ActivityThread会调用Activity的attach、onCreate方法进行Window的初始化以及DecorView的加载</li>
+<li>DecorView加载完之后并不直接显示，而是继续交由WindowMangerImpl，WindowManagerGlobal，最后交由ViewRoot的setView方法来处理</li>
+<li>在ViewRoot的setView方法通过requestLayout，最终调用performTraversals来进行测量，布局和绘制</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/13/LRUCache介绍/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/15/View测量、布局及绘制介绍/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <p class="site-author-name" itemprop="name">Lyuanhui</p>
+            <p class="site-description motion-element" itemprop="description">记录Android开发的点滴</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Activity、DecorView、Window和ViewRoot之间的关系"><span class="nav-number">1.</span> <span class="nav-text">Activity、DecorView、Window和ViewRoot之间的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#职能简介"><span class="nav-number">1.1.</span> <span class="nav-text">职能简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DecorView的创建"><span class="nav-number">1.2.</span> <span class="nav-text">DecorView的创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DecorView的显示"><span class="nav-number">1.3.</span> <span class="nav-text">DecorView的显示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lyuanhui</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2144625"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("hypBymDV4ftm9MC2hgnaPKSA-gzGzoHsz", "Ftl3mbC5GjRTjSSAPfz9rQoe");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

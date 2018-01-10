@@ -95,20 +95,17 @@
 
 
 
-<meta name="description" content="背景今天在项目中遇到下载某些文件一点击进度就显示100%(文件很大，网速也不快的情况下也是一点击就显示完成)，下载用的是https://github.com/lingochamp/FileDownloader，这个下载器里面下载请求使用的OkHttpClient 经过抓包对比发现，下载的文件，进度显示不正常的，是缺少了Content-Length，如下图:  解决出现Content-Length缺">
+<meta name="description" content="ContentProvider介绍 定义 作用 原理 使用  ContentProvider定义内容提供者，四大组件之一 ContentProvider作用进程间数据共享，即跨进程通信 进程1→ContentProvider(从数据源取数据)→线程2 注意：   实际通信的时候ContentProvider也是要从数据源取数据的，也就是内容提供者只是个中间桥梁，实际并不存储数据 数据源可以是数据库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解决使用okhttp作为网络请求时获取不到下载文件的大小">
-<meta property="og:url" content="http://yoursite.com/2017/09/20/解决OkHttp下载时获取不到文件的大小/index.html">
+<meta property="og:title" content="Lyuanhui&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/2017/12/01/ContentProvider介绍/index.html">
 <meta property="og:site_name" content="Lyuanhui&#39;s Blog">
-<meta property="og:description" content="背景今天在项目中遇到下载某些文件一点击进度就显示100%(文件很大，网速也不快的情况下也是一点击就显示完成)，下载用的是https://github.com/lingochamp/FileDownloader，这个下载器里面下载请求使用的OkHttpClient 经过抓包对比发现，下载的文件，进度显示不正常的，是缺少了Content-Length，如下图:  解决出现Content-Length缺">
+<meta property="og:description" content="ContentProvider介绍 定义 作用 原理 使用  ContentProvider定义内容提供者，四大组件之一 ContentProvider作用进程间数据共享，即跨进程通信 进程1→ContentProvider(从数据源取数据)→线程2 注意：   实际通信的时候ContentProvider也是要从数据源取数据的，也就是内容提供者只是个中间桥梁，实际并不存储数据 数据源可以是数据库">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2017/09/20/images/no_content_length_1.jpg">
-<meta property="og:image" content="http://yoursite.com/2017/09/20/images/no_content_length_2.jpg">
-<meta property="og:updated_time" content="2017-09-20T09:59:37.000Z">
+<meta property="og:updated_time" content="2017-12-27T01:44:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解决使用okhttp作为网络请求时获取不到下载文件的大小">
-<meta name="twitter:description" content="背景今天在项目中遇到下载某些文件一点击进度就显示100%(文件很大，网速也不快的情况下也是一点击就显示完成)，下载用的是https://github.com/lingochamp/FileDownloader，这个下载器里面下载请求使用的OkHttpClient 经过抓包对比发现，下载的文件，进度显示不正常的，是缺少了Content-Length，如下图:  解决出现Content-Length缺">
-<meta name="twitter:image" content="http://yoursite.com/2017/09/20/images/no_content_length_1.jpg">
+<meta name="twitter:title" content="Lyuanhui&#39;s Blog">
+<meta name="twitter:description" content="ContentProvider介绍 定义 作用 原理 使用  ContentProvider定义内容提供者，四大组件之一 ContentProvider作用进程间数据共享，即跨进程通信 进程1→ContentProvider(从数据源取数据)→线程2 注意：   实际通信的时候ContentProvider也是要从数据源取数据的，也就是内容提供者只是个中间桥梁，实际并不存储数据 数据源可以是数据库">
 
 
 
@@ -138,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/09/20/解决OkHttp下载时获取不到文件的大小/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/01/ContentProvider介绍/"/>
 
 
 
 
 
-  <title>解决使用okhttp作为网络请求时获取不到下载文件的大小 | Lyuanhui's Blog</title>
+  <title> | Lyuanhui's Blog</title>
   
 
 
@@ -261,7 +258,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/20/解决OkHttp下载时获取不到文件的大小/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/01/ContentProvider介绍/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lyuanhui">
@@ -278,7 +275,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">解决使用okhttp作为网络请求时获取不到下载文件的大小</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -290,8 +287,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T16:36:32+08:00">
-                2017-09-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-01T18:37:33+08:00">
+                2017-12-01
               </time>
             
 
@@ -308,7 +305,7 @@
 
           
           
-             <span id="/2017/09/20/解决OkHttp下载时获取不到文件的大小/" class="leancloud_visitors" data-flag-title="解决使用okhttp作为网络请求时获取不到下载文件的大小">
+             <span id="/2017/12/01/ContentProvider介绍/" class="leancloud_visitors" data-flag-title="">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -339,17 +336,135 @@
       
 
       
-        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>今天在项目中遇到下载某些文件一点击进度就显示100%(文件很大，网速也不快的情况下也是一点击就显示完成)，下载用的是<code>https://github.com/lingochamp/FileDownloader</code>，这个下载器里面下载请求使用的OkHttpClient</p>
-<p>经过抓包对比发现，下载的文件，进度显示不正常的，是缺少了<code>Content-Length</code>，如下图:</p>
-<p><img src="../images/no_content_length_1.jpg" width="50%" height="50%"><br><img src="../images/no_content_length_2.jpg" width="50%" height="50%"></p>
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>出现<code>Content-Length</code>缺少是因为服务器会对下发的资源做GZip操作，解决方法就是在请求头里面加入</p>
-<p><code>”Accept-Encoding”, “identity”</code>。</p>
-<p>在FileDownloader里面使用的OkHttpClient加入拦截器</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Request oldRequest = chain.request();</div><div class="line"></div><div class="line"><span class="comment">// 拼凑下载请求的header头</span></div><div class="line">Headers.Builder headBuilder = <span class="keyword">new</span> Headers.Builder();</div><div class="line">headBuilder.add(ACCEPT_ENCODING,IDENTITY);</div><div class="line"><span class="comment">// 构造新的request</span></div><div class="line">Request.Builder newBuilder = oldRequest.newBuilder();</div><div class="line">newBuilder.method(oldRequest.method(),oldRequest.body());</div><div class="line">Request newRequest = newBuilder.headers(headBuilder.build()).build();</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">  <span class="comment">// 执行新请求</span></div><div class="line">  response = chain.proceed(newRequest);</div><div class="line">&#125;<span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">  LogUtil.error(TAG,e.getMessage());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料:"></a>参考资料:</h3><ul>
-<li><a href="http://www.voidcn.com/article/p-njxxgoys-ot.html" target="_blank" rel="external">OKHttp与丢失掉的Content-Length</a></li>
+        <h1 id="ContentProvider介绍"><a href="#ContentProvider介绍" class="headerlink" title="ContentProvider介绍"></a>ContentProvider介绍</h1><ul>
+<li>定义</li>
+<li>作用</li>
+<li>原理</li>
+<li>使用</li>
 </ul>
-
+<h2 id="ContentProvider定义"><a href="#ContentProvider定义" class="headerlink" title="ContentProvider定义"></a>ContentProvider定义</h2><p>内容提供者，四大组件之一</p>
+<h2 id="ContentProvider作用"><a href="#ContentProvider作用" class="headerlink" title="ContentProvider作用"></a>ContentProvider作用</h2><p>进程间数据共享，即跨进程通信</p>
+<p>进程1→ContentProvider(从数据源取数据)→线程2</p>
+<p>注意：</p>
+<blockquote>
+<ol>
+<li>实际通信的时候ContentProvider也是要从数据源取数据的，也就是内容提供者只是个中间桥梁，实际并不存储数据</li>
+<li>数据源可以是数据库，XML，文件等</li>
+</ol>
+</blockquote>
+<h2 id="ContentProvider原理"><a href="#ContentProvider原理" class="headerlink" title="ContentProvider原理"></a>ContentProvider原理</h2><p>contentProvider实际底层是用的Binder机制</p>
+<h2 id="ContentProvider使用"><a href="#ContentProvider使用" class="headerlink" title="ContentProvider使用"></a>ContentProvider使用</h2><h4 id="统一资源标识符-URI"><a href="#统一资源标识符-URI" class="headerlink" title="统一资源标识符(URI)"></a>统一资源标识符(URI)</h4><ul>
+<li><p>定义</p>
+<p>URI：Uniform Resource Identifier，唯一的资源标识符</p>
+</li>
+<li><p>作用</p>
+<p>唯一标识ContentProvider和数据，分为内置URI和自定义URI，外界通过找到对应的URI找到对应的ContentProvider和数据</p>
+<p>内置URI用以获取系统数据(比如通讯录，日程表等)，自定义URI获取应用的数据</p>
+</li>
+<li><p>使用</p>
+<p>自定义URI：<code>content://com.example.package/User/name</code></p>
+<p><code>content://</code>：主题名，URI的前缀，Android规定</p>
+<p><code>com.example.package</code>：唯一标识符</p>
+<p><code>User</code>：表名</p>
+<p><code>name</code>：记录</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 找到com.example.package这个ContentProvider下的User表的name数据</span></div><div class="line">Uri uri = Uri.parse(<span class="string">"content://com.example.package/User/name"</span>);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="MIME数据类型"><a href="#MIME数据类型" class="headerlink" title="MIME数据类型"></a>MIME数据类型</h4><ul>
+<li><p>作用：用于标记后缀可以用相应的后缀打开，如txt后缀可以文件编辑器打开，mp3后缀可以用相应的音乐播放器App打开</p>
+</li>
+<li><p>使用</p>
+<p>ContentProvider.getType(uri)可以返回相应的MIME类型</p>
+<ul>
+<li><p>MIME类型组成</p>
+<p>MIME类型由类型和子类型组成，写法如下<code>类型/子类型</code></p>
+<p>如：<code>text/html</code>，<code>applicaton/pdf</code>，<code>text/css</code></p>
+</li>
+<li><p>MIME类型形式</p>
+<p>有两种形式：<code>vnd/android/cursor/item/自定义</code>表示单条记录，<code>vnd/android/cursor/dir/自定义</code>表示多条记录</p>
+</li>
+<li><p>实例</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="ContentProvider类"><a href="#ContentProvider类" class="headerlink" title="ContentProvider类"></a>ContentProvider类</h4><ul>
+<li><p>组织数据方式</p>
+<ul>
+<li>主要以表格的方式组织数据，也有用文件的方式</li>
+<li>表格中有行和列，类似数据库</li>
+</ul>
+</li>
+<li><p>主要方法</p>
+<p>主要是四个增删改查方法，外加两个其他方法：</p>
+<ul>
+<li><code>insert</code>：外部进程增加ContentProvider数据</li>
+<li><code>delete</code>：外部进程删除ContentProvider数据</li>
+<li><code>update</code>：外部进程修改ContentProvider数据</li>
+<li><code>query</code>：外部进程查询ContentProvider数据</li>
+<li><code>onCreate</code>：运行在ContentProvider主线程，不能做耗时操作，由系统调用</li>
+<li><code>getType</code>：返回URI所对应的MIME数据类型</li>
+</ul>
+<p>注意：</p>
+<blockquote>
+<ol>
+<li>这四个方法由外部进程回调，运行在ContentProvider进程的Binder线程池</li>
+<li>如果是多线程访问，注意线程的同步。访问是单个SQLite数据库时可以不用同步，因为其内部已经实现。访问多个数据库或者访问的是内存里的数据则需要自己实现线程同步。</li>
+<li>ContentProvider不会直接与外部交互，通过ContentResolver类</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h4 id="ContentResolver类"><a href="#ContentResolver类" class="headerlink" title="ContentResolver类"></a>ContentResolver类</h4><ul>
+<li><p>作用</p>
+<p>用于管理多个ContentProvider，减少ContentProvider使用成本</p>
+<p>通过使用不同URI即可达到管理多个ContentProvider</p>
+<p>外部进程是使用ContentResolver进行与ContentProvider的交互</p>
+</li>
+<li><p>使用</p>
+<ul>
+<li><p>提供了四个与ContentProvider相同的方法</p>
+</li>
+<li><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Uri uri = Uri.parse(<span class="string">"content://com.example.package/User/name"</span>);</div><div class="line"><span class="comment">// 在所有Context的子类中获取</span></div><div class="line">ContentResolver contentResolver = getContentResolver();</div><div class="line"><span class="comment">// 查询</span></div><div class="line">contentResolver.query(uri,<span class="keyword">null</span>,<span class="keyword">null</span>,<span class="keyword">null</span>,<span class="string">"username desc"</span>)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>Android提供了下面三个类辅助ContentProvider类</p>
+<h4 id="ContentUris类"><a href="#ContentUris类" class="headerlink" title="ContentUris类"></a>ContentUris类</h4><ul>
+<li><p>作用</p>
+<p>操作URI，比如提取或追加URI中的ID</p>
+</li>
+<li><p>使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Uri uri = Uri.parse(<span class="string">"content://com.example.package/User/1"</span>);</div><div class="line"><span class="comment">// 追加id</span></div><div class="line">Uri withAppendedId = ContentUris.withAppendedId(uri, <span class="number">7</span>);    </div><div class="line"><span class="comment">// 解析id                                                    </span></div><div class="line"><span class="keyword">long</span> parseId = ContentUris.parseId(uri);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="UriMatcher类"><a href="#UriMatcher类" class="headerlink" title="UriMatcher类"></a>UriMatcher类</h4><ul>
+<li><p>作用</p>
+<p>注册Uri到ContentProvider里</p>
+<p>根据Uri匹配ContentProvider的数据</p>
+</li>
+<li><p>使用</p>
+<p>​</p>
+</li>
+</ul>
+<h4 id="ContentObserver类"><a href="#ContentObserver类" class="headerlink" title="ContentObserver类"></a>ContentObserver类</h4><ul>
+<li><p>作用</p>
+<p>作为内容观察者，观察ContentProvider数据的变化以及通知外界</p>
+</li>
+<li><p>使用</p>
+<p>​</p>
+</li>
+</ul>
+<h2 id="ContentProvider实例说明"><a href="#ContentProvider实例说明" class="headerlink" title="ContentProvider实例说明"></a>ContentProvider实例说明</h2><ol>
+<li>进程内通信</li>
+<li>进程间进行数据共享</li>
+</ol>
+<h2 id="ContentProvider优点"><a href="#ContentProvider优点" class="headerlink" title="ContentProvider优点"></a>ContentProvider优点</h2><ol>
+<li>安全</li>
+<li>访问简单，高效</li>
+</ol>
+<h2 id="ContentProvider总结"><a href="#ContentProvider总结" class="headerlink" title="ContentProvider总结"></a>ContentProvider总结</h2>
       
     </div>
     
@@ -373,8 +488,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/15/setContentView源码解析/" rel="next" title="setContentView源码解析">
-                <i class="fa fa-chevron-left"></i> setContentView源码解析
+              <a href="/2017/12/01/BroadCastReceiver介绍/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -383,8 +498,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/28/在Mac下使用NDK编译FFMpeg3.3.4并应用到Android项目/" rel="prev" title="在Mac下使用NDK编译FFmpeg3.3.4">
-                在Mac下使用NDK编译FFmpeg3.3.4 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/04/Fragment介绍/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -511,7 +626,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决"><span class="nav-number"></span> <span class="nav-text">解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">1.</span> <span class="nav-text">参考资料:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ContentProvider介绍"><span class="nav-number">1.</span> <span class="nav-text">ContentProvider介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ContentProvider定义"><span class="nav-number">1.1.</span> <span class="nav-text">ContentProvider定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ContentProvider作用"><span class="nav-number">1.2.</span> <span class="nav-text">ContentProvider作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ContentProvider原理"><span class="nav-number">1.3.</span> <span class="nav-text">ContentProvider原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ContentProvider使用"><span class="nav-number">1.4.</span> <span class="nav-text">ContentProvider使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#统一资源标识符-URI"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">统一资源标识符(URI)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MIME数据类型"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">MIME数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ContentProvider类"><span class="nav-number">1.4.0.3.</span> <span class="nav-text">ContentProvider类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ContentResolver类"><span class="nav-number">1.4.0.4.</span> <span class="nav-text">ContentResolver类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ContentUris类"><span class="nav-number">1.4.0.5.</span> <span class="nav-text">ContentUris类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UriMatcher类"><span class="nav-number">1.4.0.6.</span> <span class="nav-text">UriMatcher类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ContentObserver类"><span class="nav-number">1.4.0.7.</span> <span class="nav-text">ContentObserver类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ContentProvider实例说明"><span class="nav-number">1.5.</span> <span class="nav-text">ContentProvider实例说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ContentProvider优点"><span class="nav-number">1.6.</span> <span class="nav-text">ContentProvider优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ContentProvider总结"><span class="nav-number">1.7.</span> <span class="nav-text">ContentProvider总结</span></a></li></ol></li></ol></div>
             
 
           </div>

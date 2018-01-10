@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Fragment介绍Fragment简介Fragment翻译为片段，是在Android3.0之后出来的。它是一个依附在Activity上面的视图，有自己独立的生命周期 并且可以在Activity中动态的添加和删除 Fragment生命周期onAttach→onCreate→onCreateView→onActivityCreated→onStart→onResume→onPause→onStop→">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lyuanhui&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/2017/12/04/Fragment介绍/index.html">
+<meta property="og:site_name" content="Lyuanhui&#39;s Blog">
+<meta property="og:description" content="Fragment介绍Fragment简介Fragment翻译为片段，是在Android3.0之后出来的。它是一个依附在Activity上面的视图，有自己独立的生命周期 并且可以在Activity中动态的添加和删除 Fragment生命周期onAttach→onCreate→onCreateView→onActivityCreated→onStart→onResume→onPause→onStop→">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2017/12/04/Fragment介绍/images/fragment/fragment_lifecycle.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/04/Fragment介绍/images/fragment/activity_fragment_lifecycle.png">
+<meta property="og:image" content="http://yoursite.com/Users/Lyh/Documents/Android面试相关/MyNote/images/fragment/fragment_static_result.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/04/Fragment介绍/images/fragment/fragment_dymaic_result1.png">
+<meta property="og:image" content="http://yoursite.com/2017/12/04/Fragment介绍/images/fragment/fragment_dymaic_result2.png">
+<meta property="og:updated_time" content="2017-12-28T07:43:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lyuanhui&#39;s Blog">
+<meta name="twitter:description" content="Fragment介绍Fragment简介Fragment翻译为片段，是在Android3.0之后出来的。它是一个依附在Activity上面的视图，有自己独立的生命周期 并且可以在Activity中动态的添加和删除 Fragment生命周期onAttach→onCreate→onCreateView→onActivityCreated→onStart→onResume→onPause→onStop→">
+<meta name="twitter:image" content="http://yoursite.com/2017/12/04/Fragment介绍/images/fragment/fragment_lifecycle.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/04/Fragment介绍/"/>
+
+
+
+
+
+  <title> | Lyuanhui's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lyuanhui's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">生活不止眼前的编码</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/04/Fragment介绍/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lyuanhui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lyuanhui's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-04T15:08:23+08:00">
+                2017-12-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/04/Fragment介绍/" class="leancloud_visitors" data-flag-title="">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Fragment介绍"><a href="#Fragment介绍" class="headerlink" title="Fragment介绍"></a>Fragment介绍</h1><h2 id="Fragment简介"><a href="#Fragment简介" class="headerlink" title="Fragment简介"></a>Fragment简介</h2><p>Fragment翻译为片段，是在Android3.0之后出来的。它是一个依附在Activity上面的视图，有自己独立的生命周期</p>
+<p>并且可以在Activity中动态的添加和删除</p>
+<h2 id="Fragment生命周期"><a href="#Fragment生命周期" class="headerlink" title="Fragment生命周期"></a>Fragment生命周期</h2><p>onAttach→onCreate→onCreateView→onActivityCreated→onStart→onResume→onPause→onStop→onDestoryView→onDestory→onDetach</p>
+<p><img src="./images/fragment/fragment_lifecycle.png" alt="fragment_lifecycle"></p>
+<p>onAttach→onCreate→onCreateView→onActivityCreated对应Activity的onCreate方法</p>
+<p>onDestoryView→onDestory→onDetach对应Activity的onDestory方法，其他一样的一一对应，如图</p>
+<p><img src="./images/fragment/activity_fragment_lifecycle.png" alt="activity_fragment_lifecycle"></p>
+<p>其中有几个方法是Activity里面没有的，单独介绍一下</p>
+<ul>
+<li>onAttach：发生在Fragment和Activity关联的时候</li>
+<li>onCreateView：Fragment创建视图的时候</li>
+<li>onActivityCreated：Activity的onCreate方法完成的时候</li>
+<li>onDestoryView：Fragment的视图销毁的时候</li>
+<li>onDetach：Fragment和Activity取消关联的时候</li>
+</ul>
+<p>注意：除了onCreateView之外，其他方法都要调用super基础父类的实现</p>
+<h2 id="Fragment的使用方式"><a href="#Fragment的使用方式" class="headerlink" title="Fragment的使用方式"></a>Fragment的使用方式</h2><h4 id="静态添加Fragment"><a href="#静态添加Fragment" class="headerlink" title="静态添加Fragment"></a>静态添加Fragment</h4><p>静态添加的方式也就是在XML里添加Fragment标签，分为四个文件</p>
+<ul>
+<li><code>MyFragmentActivity.java</code>：放置Fragment的Activity</li>
+<li><code>MyFragment.java</code>：要静态添加的Fragment</li>
+<li><code>activity_myfragment.xml</code>：Activity的布局文件</li>
+<li><code>fragment_static.xml</code>：Fragment的布局文件，<strong>注意Fragment的标签必须要加入<code>android:name</code>属性</strong></li>
+</ul>
+<p>MyFragmentActivity.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFragmentActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span></span>&#123;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.activity_myfragment);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>MyFragment.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span></span>&#123;</div><div class="line"></div><div class="line">  <span class="meta">@Nullable</span></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, @Nullable ViewGroup container,</span></span></div><div class="line"><span class="function"><span class="params">      @Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> inflater.inflate(R.layout.fragment_static,<span class="keyword">null</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>activity_myfragment.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"200dp"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"这是Activity"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:gravity</span>=<span class="string">"center"</span></span></div><div class="line"><span class="tag">    /&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">fragment</span></span></div><div class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">"@+id/fragmet_myactiviy"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">"org.lyh.study.interview.fragment.staticfragment.MyFragment"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>fragment_static.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"200dp"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"MyFragment"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:gravity</span>=<span class="string">"center"</span></span></div><div class="line"><span class="tag">    /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>运行效果图</p>
+<p><img src="/Users/Lyh/Documents/Android面试相关/MyNote/images/fragment/fragment_static_result.png" alt="fragment_static_result"></p>
+<h4 id="动态添加Fragment"><a href="#动态添加Fragment" class="headerlink" title="动态添加Fragment"></a>动态添加Fragment</h4><p>动态添加的方式主要是通过replace的方式替换原来的Fragment达到动态更改的目的</p>
+<p>主要文件有以下几个</p>
+<ul>
+<li><code>DymaicFragmentActivity.java</code>：动态添加Fragment的Activity</li>
+<li><code>DymaicFragment1.java</code>：紫色背景的Fragment1</li>
+<li><code>DymaicFragment2.java</code>：橙色背景的Fragment2</li>
+<li><code>activity_daymaic_fragment.xml</code>：Activity的布局文件</li>
+<li><code>fragment_dymaic1.xml</code>：紫色背景Fragment1的布局</li>
+<li><code>fragment_dymaic2.xml</code>：橙色背景Fragment2的布局</li>
+</ul>
+<p>DymaicFragmentActivity.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DymaicFragmentActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span></span>&#123;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.activity_daymaic_fragment);</div><div class="line">    <span class="comment">// 添加默认的Fragment</span></div><div class="line">    getSupportFragmentManager().beginTransaction()</div><div class="line">        .add(R.id.framelayout_dymaic_fragment,DymaicFragment1.newInstance()).commit();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line"><span class="comment">   * 点击动态切换Fragment</span></div><div class="line"><span class="comment">   */</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">changeFrament</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">    <span class="comment">// 获得当前容器里放置的Fragment</span></div><div class="line">    Fragment fragment = getSupportFragmentManager()</div><div class="line">        .findFragmentById(R.id.framelayout_dymaic_fragment);</div><div class="line">    <span class="keyword">if</span> (fragment <span class="keyword">instanceof</span> DymaicFragment1)&#123;</div><div class="line">      <span class="comment">// 如果已经放置了DymaicFragment1，则切换到DymaicFragment2</span></div><div class="line">      getSupportFragmentManager().beginTransaction()          			.replace(R.id.framelayout_dymaic_fragment,DymaicFragment2.newInstance()).commit();</div><div class="line">    &#125;<span class="keyword">else</span> &#123;</div><div class="line">      <span class="comment">// 如果容器为空，或者放置的DymaicFragment2，则显示DymaicFragment1</span></div><div class="line">      getSupportFragmentManager().beginTransaction()</div><div class="line">      .replace(R.id.framelayout_dymaic_fragment,DymaicFragment1.newInstance()).commit();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>DymaicFragment1.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DymaicFragment1</span> <span class="keyword">extends</span> <span class="title">Fragment</span></span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line"><span class="comment">   * 提供DymaicFragment1实例</span></div><div class="line"><span class="comment">   */</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DymaicFragment1 <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">    Bundle args = <span class="keyword">new</span> Bundle();</div><div class="line">    DymaicFragment1 fragment = <span class="keyword">new</span> DymaicFragment1();</div><div class="line">    fragment.setArguments(args);</div><div class="line">    <span class="keyword">return</span> fragment;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Nullable</span></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, @Nullable ViewGroup container,</span></span></div><div class="line"><span class="function"><span class="params">      @Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> inflater.inflate(R.layout.fragment_dymaic1,<span class="keyword">null</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>DymaicFragment2.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DymaicFragment2</span> <span class="keyword">extends</span> <span class="title">Fragment</span></span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line"><span class="comment">   * 提供DymaicFragment2实例</span></div><div class="line"><span class="comment">   */</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DymaicFragment2 <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">    Bundle args = <span class="keyword">new</span> Bundle();</div><div class="line">    DymaicFragment2 fragment = <span class="keyword">new</span> DymaicFragment2();</div><div class="line">    fragment.setArguments(args);</div><div class="line">    <span class="keyword">return</span> fragment;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Nullable</span></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, @Nullable ViewGroup container,</span></span></div><div class="line"><span class="function"><span class="params">      @Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> inflater.inflate(R.layout.fragment_dymaic2,<span class="keyword">null</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>activity_daymaic_fragment.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:background</span>=<span class="string">"@android:color/white"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"点击切换Activity"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:onClick</span>=<span class="string">"changeFrament"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_gravity</span>=<span class="string">"center"</span></span></div><div class="line"><span class="tag">    /&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">FrameLayout</span></span></div><div class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">"@+id/framelayout_dymaic_fragment"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>fragment_dymaic1.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:background</span>=<span class="string">"@android:color/holo_purple"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"Fragment1"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:gravity</span>=<span class="string">"center"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>fragment_dymaic2.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:background</span>=<span class="string">"@android:color/holo_blue_bright"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">TextView</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"Fragment2"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:gravity</span>=<span class="string">"center"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>运行效果</p>
+<p><img src="./images/fragment/fragment_dymaic_result1.png" alt="fragment_dymaic_result1"></p>
+<p><img src="./images/fragment/fragment_dymaic_result2.png" alt="fragment_dymaic_result1"></p>
+<h2 id="Fragment的回退栈"><a href="#Fragment的回退栈" class="headerlink" title="Fragment的回退栈"></a>Fragment的回退栈</h2><p>如果把Fragment添加到回退栈，可以在按返回键时仍然看到上一次保存的状态。一旦Fragment完全从回退栈退出后，再按返回键则退出了当前Activity</p>
+<p>下面的实例是分别在Fragment1、Fragment2里面输入文字，然后从Fragment3开始按返回键回退，这时候会发现在Fragment2输入的文字还有保留，而在Fragment1输入的文字则没有保存到</p>
+<p>下面通过一个实例来说明，总共有以下几个文件</p>
+<ul>
+<li><code>BackStackFragmentActivity.java</code>：放置Fragment的Activity</li>
+<li><code>BackStackFragment1.java</code>：回退栈第一个Fragment</li>
+<li><code>BackStackFragment2.java</code>：回退栈第二个Fragment</li>
+<li><code>BackStackFragment3.java</code>：回退栈第三个Fragment</li>
+<li><code>activity_backstack_fragment.xml</code>：Activity的布局文件</li>
+<li><code>fragment_backstack1.xml</code>：回退栈第一个Fragment布局文件</li>
+<li><code>fragment_backstack2.xml</code>：回退栈第二个Fragment布局文件</li>
+<li><code>fragment_backstack3.xml</code>：回退栈第三个Fragment布局文件</li>
+</ul>
+<p>BackStackFragmentActivity.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BackStackFragmentActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span></span>&#123;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.activity_backstack_fragment);</div><div class="line">    getSupportFragmentManager().beginTransaction()</div><div class="line">        .add(R.id.framelayout_backstack_fragment,BackStackFragment1.newInstance())</div><div class="line">        .commit();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>BackStackFragment1.java</p>
+<p>这里点击跳转的时候直接replace掉原来的Fragment并放入回退栈里，这样做的后果就是替换成Fragment2后，Fragment1的视图会被销毁，但是实例还在，按回退键的时候会重建视图</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BackStackFragment1</span> <span class="keyword">extends</span> <span class="title">Fragment</span></span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line"><span class="comment">   * 提供BackStackFragment1实例</span></div><div class="line"><span class="comment">   */</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BackStackFragment1 <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">    Bundle args = <span class="keyword">new</span> Bundle();</div><div class="line">    BackStackFragment1 fragment = <span class="keyword">new</span> BackStackFragment1();</div><div class="line">    fragment.setArguments(args);</div><div class="line">    <span class="keyword">return</span> fragment;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Nullable</span></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, @Nullable ViewGroup container,</span></span></div><div class="line"><span class="function"><span class="params">      @Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    View view = inflater.inflate(R.layout.fragment_backstack1, <span class="keyword">null</span>);</div><div class="line">    Button button = view.findViewById(R.id.btn_backstack_fragment1);</div><div class="line">    button.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">      <span class="meta">@Override</span></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        getFragmentManager().beginTransaction()</div><div class="line">            .replace(R.id.framelayout_backstack_fragment,BackStackFragment2.newInstance())</div><div class="line">            .addToBackStack(<span class="keyword">null</span>)</div><div class="line">            .commit();</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> view;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>BackStackFragment2.java</p>
+<p>这里没有直接replace掉Fragment2，而是先隐藏Fragment2，再添加Fragment3到容器里，并且也添加到回退栈，这时候就保存了实例的同时也保留了原来的视图，从Fragment3回退到Fragment2的时候输入的数据都会有保存</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BackStackFragment2</span> <span class="keyword">extends</span> <span class="title">Fragment</span></span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line"><span class="comment">   * 提供BackStackFragment2实例</span></div><div class="line"><span class="comment">   */</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BackStackFragment2 <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">    Bundle args = <span class="keyword">new</span> Bundle();</div><div class="line">    BackStackFragment2 fragment = <span class="keyword">new</span> BackStackFragment2();</div><div class="line">    fragment.setArguments(args);</div><div class="line">    <span class="keyword">return</span> fragment;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Nullable</span></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, @Nullable ViewGroup container,</span></span></div><div class="line"><span class="function"><span class="params">      @Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    View view = inflater.inflate(R.layout.fragment_backstack2, <span class="keyword">null</span>);</div><div class="line">    Button button = view.findViewById(R.id.btn_backstack_fragment2);</div><div class="line">    button.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">      <span class="meta">@Override</span></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        getFragmentManager().beginTransaction()</div><div class="line">            .hide(BackStackFragment2.<span class="keyword">this</span>)</div><div class="line">            .add(R.id.framelayout_backstack_fragment,BackStackFragment3.newInstance())</div><div class="line">            .addToBackStack(<span class="keyword">null</span>)</div><div class="line">            .commit();</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> view;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>BackStackFragment3.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BackStackFragment3</span> <span class="keyword">extends</span> <span class="title">Fragment</span></span>&#123;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line"><span class="comment">   * 提供BackStackFragment3实例</span></div><div class="line"><span class="comment">   */</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BackStackFragment3 <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">    Bundle args = <span class="keyword">new</span> Bundle();</div><div class="line">    BackStackFragment3 fragment = <span class="keyword">new</span> BackStackFragment3();</div><div class="line">    fragment.setArguments(args);</div><div class="line">    <span class="keyword">return</span> fragment;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Nullable</span></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, @Nullable ViewGroup container,</span></span></div><div class="line"><span class="function"><span class="params">      @Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    View view = inflater.inflate(R.layout.fragment_backstack3, <span class="keyword">null</span>);</div><div class="line">    Button button = view.findViewById(R.id.btn_backstack_fragment3);</div><div class="line">    button.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">      <span class="meta">@Override</span></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        Toast.makeText(getContext(),<span class="string">"BackStackFragment3"</span>,Toast.LENGTH_SHORT).show();</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> view;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>activity_backstack_fragment.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:background</span>=<span class="string">"@android:color/white"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">FrameLayout</span></span></div><div class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">"@+id/framelayout_backstack_fragment"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>fragment_backstack1.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:background</span>=<span class="string">"@android:color/darker_gray"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_gravity</span>=<span class="string">"center"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"Fragment1"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:inputType</span>=<span class="string">"text"</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">"@+id/btn_backstack_fragment1"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"跳转到Fragment2"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_gravity</span>=<span class="string">"center"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>fragment_backstack2.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:background</span>=<span class="string">"@android:color/holo_blue_dark"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_gravity</span>=<span class="string">"center"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"Fragment2"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:inputType</span>=<span class="string">"text"</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">"@+id/btn_backstack_fragment2"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"跳转到Fragment3"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_gravity</span>=<span class="string">"center"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>fragment_backstack3.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:background</span>=<span class="string">"@android:color/holo_green_dark"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">              <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">EditText</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_gravity</span>=<span class="string">"center"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"Fragment3"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:inputType</span>=<span class="string">"text"</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">"@+id/btn_backstack_fragment3"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"这是Fragment3"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:layout_gravity</span>=<span class="string">"center"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="Fragment和Activity之间的通信"><a href="#Fragment和Activity之间的通信" class="headerlink" title="Fragment和Activity之间的通信"></a>Fragment和Activity之间的通信</h2><h4 id="Activity调用Fragment的方法"><a href="#Activity调用Fragment的方法" class="headerlink" title="Activity调用Fragment的方法"></a>Activity调用Fragment的方法</h4><ul>
+<li>如果在Activity中有Fragment的引用，则可以直接调用Fragment的方法</li>
+<li>如果Activity中没有Fragment的引用的话，则可以通过<code>findFragmentById(int containId)</code>方法返回Fragment或者通过<code>findFragmentByTag(String tag)</code>找到Fragment</li>
+</ul>
+<h4 id="Fragment调用Activity的方法"><a href="#Fragment调用Activity的方法" class="headerlink" title="Fragment调用Activity的方法"></a>Fragment调用Activity的方法</h4><p>在Fragment中可以通过<code>getActivity</code>方法拿到Activity的实例进行操作</p>
+<h2 id="Fragment和Activity通信的优化"><a href="#Fragment和Activity通信的优化" class="headerlink" title="Fragment和Activity通信的优化"></a>Fragment和Activity通信的优化</h2><p>在上面回退栈的例子中，直接就在Fragment的点击事件中处理其他Fragment，比如替换和隐藏，其实这些操作应该交由使用它的Activity来实现，否则不利于Fragment的复用</p>
+<p>另外通信的优化在于降低Fragment和Activity耦合性，比如在Fragment内部不应该持有某个具体的Activity引用，也是利于Fragment能复用</p>
+<p>现在通过改造上面的例子，比上面的例子多了两个接口</p>
+<ul>
+<li><code>Fragment1Interface</code>：Fragment1和其他Activity通信的桥梁</li>
+<li><code>Fragment2Interface</code>：Fragment2和其他Activity通信的桥梁</li>
+</ul>
+<p>BackStackFragmentActivity.java</p>
+<p>实现了与两个Fragment通信的接口，并且把原先Fragment里面按钮点击事件的处理放到了Activity里来处理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BackStackFragmentOptimizeActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span></span></div><div class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">Fragment1Interface</span>,<span class="title">Fragment2Interface</span></span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> BackStackFragment1 mBackStackFragment1;</div><div class="line">  <span class="keyword">private</span> BackStackFragment2 mBackStackFragment2;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.activity_backstack_fragment);</div><div class="line"></div><div class="line">    mBackStackFragment1 = BackStackFragment1.newInstance();</div><div class="line">    mBackStackFragment2 = BackStackFragment2.newInstance();</div><div class="line">    <span class="comment">// 注册Fragment1的点击</span></div><div class="line">    mBackStackFragment1.setOnFragment1Click(<span class="keyword">this</span>);</div><div class="line">    <span class="comment">// 注册Fragment2的点击</span></div><div class="line">    mBackStackFragment2.setOnFragment2Click(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 添加Fragment1为默认的Fragment</span></div><div class="line">    getSupportFragmentManager().beginTransaction()</div><div class="line">        .add(R.id.framelayout_backstack_fragment, mBackStackFragment1)</div><div class="line">        .commit();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFragment1Click</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// 在Activity里操作Fragment1的点击事件</span></div><div class="line">    getSupportFragmentManager().beginTransaction()</div><div class="line">        .replace(R.id.framelayout_backstack_fragment, mBackStackFragment2)</div><div class="line">        .addToBackStack(<span class="keyword">null</span>)</div><div class="line">        .commit();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFragment2Click</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// 在Activity里操作Fragment2的点击事件</span></div><div class="line">    getSupportFragmentManager().beginTransaction()</div><div class="line">        .hide(mBackStackFragment2)</div><div class="line">        .add(R.id.framelayout_backstack_fragment, BackStackFragment3.newInstance())</div><div class="line">        .addToBackStack(<span class="keyword">null</span>)</div><div class="line">        .commit();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>BackStackFragment1.java</p>
+<p>在<code>setOnFragment1Click</code>方法传入Fragment1Interface子类的引用，即调用的Activity</p>
+<p>在原Fragment点击事件的处理上，回调Activity的<code>onFragment1Click</code>方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BackStackFragment1</span> <span class="keyword">extends</span> <span class="title">Fragment</span></span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> Fragment1Interface mClick;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line"><span class="comment">   * 提供BackStackFragment1实例</span></div><div class="line"><span class="comment">   */</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BackStackFragment1 <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">    Bundle args = <span class="keyword">new</span> Bundle();</div><div class="line">    BackStackFragment1 fragment = <span class="keyword">new</span> BackStackFragment1();</div><div class="line">    fragment.setArguments(args);</div><div class="line">    <span class="keyword">return</span> fragment;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setOnFragment1Click</span><span class="params">(Fragment1Interface click)</span></span>&#123;</div><div class="line">    mClick = click;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Nullable</span></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, @Nullable ViewGroup container,</span></span></div><div class="line"><span class="function"><span class="params">      @Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    View view = inflater.inflate(R.layout.fragment_backstack1, <span class="keyword">null</span>);</div><div class="line">    Button button = view.findViewById(R.id.btn_backstack_fragment1);</div><div class="line">    button.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">      <span class="meta">@Override</span></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (mClick != <span class="keyword">null</span>) &#123;</div><div class="line">          mClick.onFragment1Click();</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> view;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>BackStackFragment2.java</p>
+<p>在<code>setOnFragment2Click</code>方法传入Fragment1Interface子类的引用，即调用的Activity</p>
+<p>在原Fragment点击事件的处理上，回调Activity的<code>onFragment2Click</code>方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BackStackFragment2</span> <span class="keyword">extends</span> <span class="title">Fragment</span></span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">private</span> Fragment2Interface mClick;</div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line"><span class="comment">   * 提供BackStackFragment2实例</span></div><div class="line"><span class="comment">   */</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BackStackFragment2 <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">    Bundle args = <span class="keyword">new</span> Bundle();</div><div class="line">    BackStackFragment2 fragment = <span class="keyword">new</span> BackStackFragment2();</div><div class="line">    fragment.setArguments(args);</div><div class="line">    <span class="keyword">return</span> fragment;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setOnFragment2Click</span><span class="params">(Fragment2Interface click)</span></span>&#123;</div><div class="line">    mClick = click;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Nullable</span></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, @Nullable ViewGroup container,</span></span></div><div class="line"><span class="function"><span class="params">      @Nullable Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    View view = inflater.inflate(R.layout.fragment_backstack2, <span class="keyword">null</span>);</div><div class="line">    Button button = view.findViewById(R.id.btn_backstack_fragment2);</div><div class="line">    button.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">      <span class="meta">@Override</span></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (mClick != <span class="keyword">null</span>)&#123;</div><div class="line">          mClick.onFragment2Click();</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> view;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面分别是两个接口的定义</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Fragment1Interface</span> </span>&#123;</div><div class="line">  <span class="comment">// Fragment1与通过实现了这个接口的Activity发生通信</span></div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">onFragment1Click</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Fragment2Interface</span> </span>&#123;</div><div class="line">  <span class="comment">// Fragment2与通过实现了这个接口的Activity发生通信</span></div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">onFragment2Click</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>代码运行后，效果跟开始一样</p>
+<p>如果没有特殊的原因，绝对不要在Fragment去处理其他Fragment，而是交由使用它的Activity去处理</p>
+<h2 id="如何处理运行时配置发送变化"><a href="#如何处理运行时配置发送变化" class="headerlink" title="如何处理运行时配置发送变化"></a>如何处理运行时配置发送变化</h2><p>当屏幕发生旋转时，Activity会发生重绘，如果这时在onCreate里面创建Fragment实例的话，当屏幕发生变化时，又会新创建一个Fragment的实例，看下面的日志</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 第一次进入执行</span></div><div class="line"><span class="number">12</span>-<span class="number">06</span> <span class="number">10</span>:<span class="number">26</span>:<span class="number">43.730</span> <span class="number">338</span>-<span class="number">338</span>/org.lyh.study.interview I/BackStackFragment1: onCreate</div><div class="line"><span class="number">12</span>-<span class="number">06</span> <span class="number">10</span>:<span class="number">26</span>:<span class="number">43.731</span> <span class="number">338</span>-<span class="number">338</span>/org.lyh.study.interview I/BackStackFragment1: onCreateView</div><div class="line">  </div><div class="line"><span class="comment">// 旋转到横屏执行</span></div><div class="line"><span class="number">12</span>-<span class="number">06</span> <span class="number">10</span>:<span class="number">26</span>:<span class="number">52.599</span> <span class="number">338</span>-<span class="number">338</span>/org.lyh.study.interview I/BackStackFragment1: onCreate</div><div class="line"><span class="number">12</span>-<span class="number">06</span> <span class="number">10</span>:<span class="number">26</span>:<span class="number">52.614</span> <span class="number">338</span>-<span class="number">338</span>/org.lyh.study.interview I/BackStackFragment1: onCreateView</div><div class="line"><span class="number">12</span>-<span class="number">06</span> <span class="number">10</span>:<span class="number">26</span>:<span class="number">52.619</span> <span class="number">338</span>-<span class="number">338</span>/org.lyh.study.interview I/BackStackFragment1: onCreate</div><div class="line"><span class="number">12</span>-<span class="number">06</span> <span class="number">10</span>:<span class="number">26</span>:<span class="number">52.619</span> <span class="number">338</span>-<span class="number">338</span>/org.lyh.study.interview I/BackStackFragment1: onCreateView</div><div class="line">  </div><div class="line"><span class="comment">// 旋转回来竖屏执行</span></div><div class="line"><span class="number">12</span>-<span class="number">06</span> <span class="number">10</span>:<span class="number">27</span>:<span class="number">01.881</span> <span class="number">338</span>-<span class="number">338</span>/org.lyh.study.interview I/BackStackFragment1: onCreate</div><div class="line"><span class="number">12</span>-<span class="number">06</span> <span class="number">10</span>:<span class="number">27</span>:<span class="number">01.881</span> <span class="number">338</span>-<span class="number">338</span>/org.lyh.study.interview I/BackStackFragment1: onCreate</div><div class="line"><span class="number">12</span>-<span class="number">06</span> <span class="number">10</span>:<span class="number">27</span>:<span class="number">01.895</span> <span class="number">338</span>-<span class="number">338</span>/org.lyh.study.interview I/BackStackFragment1: onCreateView</div><div class="line"><span class="number">12</span>-<span class="number">06</span> <span class="number">10</span>:<span class="number">27</span>:<span class="number">01.899</span> <span class="number">338</span>-<span class="number">338</span>/org.lyh.study.interview I/BackStackFragment1: onCreateView</div><div class="line"><span class="number">12</span>-<span class="number">06</span> <span class="number">10</span>:<span class="number">27</span>:<span class="number">01.903</span> <span class="number">338</span>-<span class="number">338</span>/org.lyh.study.interview I/BackStackFragment1: onCreate</div><div class="line"><span class="number">12</span>-<span class="number">06</span> <span class="number">10</span>:<span class="number">27</span>:<span class="number">01.903</span> <span class="number">338</span>-<span class="number">338</span>/org.lyh.study.interview I/BackStackFragment1: onCreateView</div></pre></td></tr></table></figure>
+<p>解决办法是在onCreate里面判断<code>savedInstanceState</code>是否为空</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 添加Fragment1为默认的Fragment</span></div><div class="line">    <span class="keyword">if</span> (savedInstanceState == <span class="keyword">null</span>)&#123;</div><div class="line">      getSupportFragmentManager().beginTransaction()</div><div class="line">          .add(R.id.framelayout_backstack_fragment, mBackStackFragment1)</div><div class="line">          .commit();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>修好后重新运行，日志如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 第一次进入执行</span></div><div class="line"><span class="number">12</span>-<span class="number">06</span> <span class="number">10</span>:<span class="number">32</span>:<span class="number">52.292</span> <span class="number">4475</span>-<span class="number">4475</span>/org.lyh.study.interview I/BackStackFragment1: onCreate</div><div class="line"><span class="number">12</span>-<span class="number">06</span> <span class="number">10</span>:<span class="number">32</span>:<span class="number">52.293</span> <span class="number">4475</span>-<span class="number">4475</span>/org.lyh.study.interview I/BackStackFragment1: onCreateView</div><div class="line"></div><div class="line"><span class="comment">// 旋转到横屏执行</span></div><div class="line"><span class="number">12</span>-<span class="number">06</span> <span class="number">10</span>:<span class="number">32</span>:<span class="number">58.433</span> <span class="number">4475</span>-<span class="number">4475</span>/org.lyh.study.interview I/BackStackFragment1: onCreate</div><div class="line"><span class="number">12</span>-<span class="number">06</span> <span class="number">10</span>:<span class="number">32</span>:<span class="number">58.457</span> <span class="number">4475</span>-<span class="number">4475</span>/org.lyh.study.interview I/BackStackFragment1: onCreateView</div><div class="line"></div><div class="line"><span class="comment">// 旋转回来竖屏执行</span></div><div class="line"><span class="number">12</span>-<span class="number">06</span> <span class="number">10</span>:<span class="number">33</span>:<span class="number">02.602</span> <span class="number">4475</span>-<span class="number">4475</span>/org.lyh.study.interview I/BackStackFragment1: onCreate</div><div class="line"><span class="number">12</span>-<span class="number">06</span> <span class="number">10</span>:<span class="number">33</span>:<span class="number">02.618</span> <span class="number">4475</span>-<span class="number">4475</span>/org.lyh.study.interview I/BackStackFragment1: onCreateView</div></pre></td></tr></table></figure>
+<p>另外Fragment发生重建时候，数据可以在<code>onSaveInstanceState</code>进行保存，把数据放进去bundle里面，然后在</p>
+<p>onCreateView或者onActivityCreated的里面重新取出来</p>
+<p>注意</p>
+<blockquote>
+<p>有时候控件比如EditText设置了id后，旋转屏幕系统会帮我们保存和恢复数据，没有id则不会</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/01/ContentProvider介绍/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/06/Android消息机制/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <p class="site-author-name" itemprop="name">Lyuanhui</p>
+            <p class="site-description motion-element" itemprop="description">记录Android开发的点滴</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Fragment介绍"><span class="nav-number">1.</span> <span class="nav-text">Fragment介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Fragment简介"><span class="nav-number">1.1.</span> <span class="nav-text">Fragment简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fragment生命周期"><span class="nav-number">1.2.</span> <span class="nav-text">Fragment生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fragment的使用方式"><span class="nav-number">1.3.</span> <span class="nav-text">Fragment的使用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#静态添加Fragment"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">静态添加Fragment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态添加Fragment"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">动态添加Fragment</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fragment的回退栈"><span class="nav-number">1.4.</span> <span class="nav-text">Fragment的回退栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fragment和Activity之间的通信"><span class="nav-number">1.5.</span> <span class="nav-text">Fragment和Activity之间的通信</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Activity调用Fragment的方法"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">Activity调用Fragment的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Fragment调用Activity的方法"><span class="nav-number">1.5.0.2.</span> <span class="nav-text">Fragment调用Activity的方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fragment和Activity通信的优化"><span class="nav-number">1.6.</span> <span class="nav-text">Fragment和Activity通信的优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何处理运行时配置发送变化"><span class="nav-number">1.7.</span> <span class="nav-text">如何处理运行时配置发送变化</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lyuanhui</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2144625"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("hypBymDV4ftm9MC2hgnaPKSA-gzGzoHsz", "Ftl3mbC5GjRTjSSAPfz9rQoe");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
