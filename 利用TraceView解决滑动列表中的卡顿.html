@@ -96,22 +96,22 @@
 
 
 <meta name="description" content="TraceView使用实战解决滑动列表中的卡顿最近项目中出现列表非常卡的页面，刚好也想好好研究一下性能优化方面的东西。  对卡顿的认识 卡顿顾名思义就是不流畅，而表现在Android的世界里则有个16ms原则：  Android系统每隔16ms会发出VSYNC信号重绘我们的界面(Activity).为什么是16ms, 因为Android设定的刷新率是60FPS(Frame Per Second),">
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Lyuanhui&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/2017/11/21/利用TraceView解决滑动列表中的卡顿/index.html">
+<meta property="og:url" content="http://yoursite.com/利用TraceView解决滑动列表中的卡顿.html">
 <meta property="og:site_name" content="Lyuanhui&#39;s Blog">
 <meta property="og:description" content="TraceView使用实战解决滑动列表中的卡顿最近项目中出现列表非常卡的页面，刚好也想好好研究一下性能优化方面的东西。  对卡顿的认识 卡顿顾名思义就是不流畅，而表现在Android的世界里则有个16ms原则：  Android系统每隔16ms会发出VSYNC信号重绘我们的界面(Activity).为什么是16ms, 因为Android设定的刷新率是60FPS(Frame Per Second),">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2017/11/21/images/traceview_use_1.png">
-<meta property="og:image" content="http://yoursite.com/2017/11/21/images/traceview_use_2.png">
-<meta property="og:image" content="http://yoursite.com/2017/11/21/images/traceview_use_3.png">
-<meta property="og:image" content="http://yoursite.com/2017/11/21/images/traceview_use_4.png">
-<meta property="og:image" content="http://yoursite.com/2017/11/21/images/traceview_use_5.png">
+<meta property="og:image" content="http://yoursite.com/images/traceview_use_1.png">
+<meta property="og:image" content="http://yoursite.com/images/traceview_use_2.png">
+<meta property="og:image" content="http://yoursite.com/images/traceview_use_3.png">
+<meta property="og:image" content="http://yoursite.com/images/traceview_use_4.png">
+<meta property="og:image" content="http://yoursite.com/images/traceview_use_5.png">
 <meta property="og:updated_time" content="2017-11-22T03:45:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lyuanhui&#39;s Blog">
 <meta name="twitter:description" content="TraceView使用实战解决滑动列表中的卡顿最近项目中出现列表非常卡的页面，刚好也想好好研究一下性能优化方面的东西。  对卡顿的认识 卡顿顾名思义就是不流畅，而表现在Android的世界里则有个16ms原则：  Android系统每隔16ms会发出VSYNC信号重绘我们的界面(Activity).为什么是16ms, 因为Android设定的刷新率是60FPS(Frame Per Second),">
-<meta name="twitter:image" content="http://yoursite.com/2017/11/21/images/traceview_use_1.png">
+<meta name="twitter:image" content="http://yoursite.com/images/traceview_use_1.png">
 
 
 
@@ -141,7 +141,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/11/21/利用TraceView解决滑动列表中的卡顿/"/>
+  <link rel="canonical" href="http://yoursite.com/利用TraceView解决滑动列表中的卡顿.html"/>
 
 
 
@@ -252,97 +252,24 @@
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/21/利用TraceView解决滑动列表中的卡顿/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Lyuanhui">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lyuanhui's Blog">
-    </span>
-
     
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline"></h1>
-        
+	<h1 class="post-title" itemprop="name headline"></h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-21T16:13:22+08:00">
-                2017-11-21
-              </time>
-            
 
-            
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/11/21/利用TraceView解决滑动列表中的卡顿/" class="leancloud_visitors" data-flag-title="">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
       
-
       
-        <h1 id="TraceView使用实战解决滑动列表中的卡顿"><a href="#TraceView使用实战解决滑动列表中的卡顿" class="headerlink" title="TraceView使用实战解决滑动列表中的卡顿"></a>TraceView使用实战解决滑动列表中的卡顿</h1><p>最近项目中出现列表非常卡的页面，刚好也想好好研究一下性能优化方面的东西。</p>
+      <div class="post-body">
+        
+        
+          <h1 id="TraceView使用实战解决滑动列表中的卡顿"><a href="#TraceView使用实战解决滑动列表中的卡顿" class="headerlink" title="TraceView使用实战解决滑动列表中的卡顿"></a>TraceView使用实战解决滑动列表中的卡顿</h1><p>最近项目中出现列表非常卡的页面，刚好也想好好研究一下性能优化方面的东西。</p>
 <ol>
 <li><h3 id="对卡顿的认识"><a href="#对卡顿的认识" class="headerlink" title="对卡顿的认识"></a>对卡顿的认识</h3><p> 卡顿顾名思义就是不流畅，而表现在Android的世界里则有个16ms原则：</p>
 <blockquote>
@@ -390,61 +317,15 @@
 <li><h3 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h3></li>
 </ol>
 
+        
+      </div>
+      
+      
       
     </div>
     
     
     
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/09/28/在Mac下使用NDK编译FFMpeg3.3.4并应用到Android项目/" rel="next" title="在Mac下使用NDK编译FFmpeg3.3.4">
-                <i class="fa fa-chevron-left"></i> 在Mac下使用NDK编译FFmpeg3.3.4
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/27/Android Studio3.0中自带TraceView使用教程/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
@@ -503,7 +384,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -677,10 +558,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
 
   
 
